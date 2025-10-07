@@ -1,12 +1,8 @@
 # Portfolio Site - Trent Holms Petersen
 
-A minimalist, dark-themed portfolio website with cosmic aesthetics, built for a Senior UX Design Director role application.
-
 ## Design Philosophy
 
 - **Pure black & white**: #000000 background with white text, minimal grays
-- **Serif headings**: Didot/Bodoni for authority and timelessness
-- **Sans-serif body**: Helvetica Neue for clean readability
 - **Generous spacing**: Emphasis on white space and breathing room
 - **Flat design**: No gradients or glass morphism, just clean lines
 - **Subtle interactions**: Opacity changes instead of color shifts
