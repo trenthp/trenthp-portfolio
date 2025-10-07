@@ -6,20 +6,42 @@ class ThreeScene {
     constructor(canvas, options = {}) {
         this.canvas = canvas;
         this.options = options;
-        this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(
-            75,
-            canvas.clientWidth / canvas.clientHeight,
-            0.1,
-            1000
-        );
-        this.renderer = new THREE.WebGLRenderer({
-            canvas: canvas,
-            alpha: true,
-            antialias: true
-        });
-        this.renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Ensure canvas has dimensions before initializing
+        if (!canvas.clientWidth || !canvas.clientHeight) {
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width && rect.height) {
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            } else {
+                // Fallback dimensions
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        }
+
+        try {
+            this.scene = new THREE.Scene();
+            this.camera = new THREE.PerspectiveCamera(
+                75,
+                (canvas.clientWidth || canvas.width) / (canvas.clientHeight || canvas.height),
+                0.1,
+                1000
+            );
+            this.renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                alpha: true,
+                antialias: window.devicePixelRatio <= 1, // Disable antialias on high DPI for performance
+                powerPreference: 'low-power' // Better for mobile
+            });
+            this.renderer.setSize(canvas.clientWidth || canvas.width, canvas.clientHeight || canvas.height);
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        } catch (error) {
+            console.error('WebGL initialization failed:', error);
+            // Hide canvas if WebGL fails
+            canvas.style.display = 'none';
+            return;
+        }
 
         this.mouse = { x: 0, y: 0 };
         this.targetRotation = { x: 0, y: 0 };
@@ -67,13 +89,17 @@ class ThreeScene {
         });
 
         window.addEventListener('resize', () => {
-            this.camera.aspect = this.canvas.clientWidth / this.canvas.clientHeight;
+            if (!this.camera || !this.renderer) return;
+            const width = this.canvas.clientWidth || this.canvas.width;
+            const height = this.canvas.clientHeight || this.canvas.height;
+            this.camera.aspect = width / height;
             this.camera.updateProjectionMatrix();
-            this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
+            this.renderer.setSize(width, height);
         });
     }
 
     animate() {
+        if (!this.renderer || !this.scene || !this.camera) return;
         requestAnimationFrame(() => this.animate());
         this.update();
         this.renderer.render(this.scene, this.camera);
@@ -443,7 +469,17 @@ class ContactScene extends ThreeScene {
 }
 
 // Initialize Three.js scenes
-document.addEventListener('DOMContentLoaded', () => {
+function initializeThreeScenes() {
+    // Check if Three.js is loaded
+    if (typeof THREE === 'undefined') {
+        console.warn('Three.js not loaded. Canvas backgrounds will be hidden.');
+        // Hide all canvases if Three.js fails to load
+        document.querySelectorAll('canvas').forEach(canvas => {
+            canvas.style.display = 'none';
+        });
+        return;
+    }
+
     // Hero scene
     const heroCanvas = document.getElementById('hero-canvas');
     if (heroCanvas) {
@@ -479,6 +515,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactCanvas = document.getElementById('contact-canvas');
     if (contactCanvas) {
         new ContactScene(contactCanvas);
+    }
+}
+
+// Wait for both DOM and Three.js to be ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Give time for external scripts to load
+    if (typeof THREE !== 'undefined') {
+        initializeThreeScenes();
+    } else {
+        // Wait a bit for Three.js to load from CDN
+        setTimeout(() => {
+            initializeThreeScenes();
+        }, 500);
     }
 });
 
