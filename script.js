@@ -6,20 +6,42 @@ class ThreeScene {
     constructor(canvas, options = {}) {
         this.canvas = canvas;
         this.options = options;
-        this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(
-            75,
-            canvas.clientWidth / canvas.clientHeight,
-            0.1,
-            1000
-        );
-        this.renderer = new THREE.WebGLRenderer({
-            canvas: canvas,
-            alpha: true,
-            antialias: true
-        });
-        this.renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Ensure canvas has dimensions before initializing
+        if (!canvas.clientWidth || !canvas.clientHeight) {
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width && rect.height) {
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            } else {
+                // Fallback dimensions
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        }
+
+        try {
+            this.scene = new THREE.Scene();
+            this.camera = new THREE.PerspectiveCamera(
+                75,
+                (canvas.clientWidth || canvas.width) / (canvas.clientHeight || canvas.height),
+                0.1,
+                1000
+            );
+            this.renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                alpha: true,
+                antialias: window.devicePixelRatio <= 1, // Disable antialias on high DPI for performance
+                powerPreference: 'low-power' // Better for mobile
+            });
+            this.renderer.setSize(canvas.clientWidth || canvas.width, canvas.clientHeight || canvas.height);
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        } catch (error) {
+            console.error('WebGL initialization failed:', error);
+            // Hide canvas if WebGL fails
+            canvas.style.display = 'none';
+            return;
+        }
 
         this.mouse = { x: 0, y: 0 };
         this.targetRotation = { x: 0, y: 0 };
@@ -28,6 +50,19 @@ class ThreeScene {
         this.setupObjects();
         this.addEventListeners();
         this.animate();
+
+        // Store in global array for theme updates
+        if (!window.threeScenes) window.threeScenes = [];
+        window.threeScenes.push(this);
+    }
+
+    getThemeColor() {
+        const theme = document.documentElement.getAttribute('data-theme');
+        return theme === 'light' ? 0x000000 : 0xffffff;
+    }
+
+    updateTheme() {
+        // Override in subclasses
     }
 
     setupLights() {
@@ -54,13 +89,17 @@ class ThreeScene {
         });
 
         window.addEventListener('resize', () => {
-            this.camera.aspect = this.canvas.clientWidth / this.canvas.clientHeight;
+            if (!this.camera || !this.renderer) return;
+            const width = this.canvas.clientWidth || this.canvas.width;
+            const height = this.canvas.clientHeight || this.canvas.height;
+            this.camera.aspect = width / height;
             this.camera.updateProjectionMatrix();
-            this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
+            this.renderer.setSize(width, height);
         });
     }
 
     animate() {
+        if (!this.renderer || !this.scene || !this.camera) return;
         requestAnimationFrame(() => this.animate());
         this.update();
         this.renderer.render(this.scene, this.camera);
@@ -87,15 +126,15 @@ class HeroScene extends ThreeScene {
 
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-        const particlesMaterial = new THREE.PointsMaterial({
-            color: 0xffffff,
-            size: 0.025,
+        this.particlesMaterial = new THREE.PointsMaterial({
+            color: this.getThemeColor(),
+            size: 0.03,
             transparent: true,
-            opacity: 0.6,
+            opacity: 0.8,
             blending: THREE.AdditiveBlending
         });
 
-        this.particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        this.particles = new THREE.Points(particlesGeometry, this.particlesMaterial);
         this.scene.add(this.particles);
 
         // Shooting stars
@@ -104,17 +143,23 @@ class HeroScene extends ThreeScene {
 
         // Minimal 3D wireframe geometries - mystical and scientific
         this.geometries = [];
+        this.geometryMaterials = [];
+
+        // Responsive positioning based on viewport width
+        const isMobile = window.innerWidth < 768;
+        const positionScale = isMobile ? 0.5 : 1;
 
         // Icosahedron - platonic solid, sacred geometry
         const icoGeometry = new THREE.IcosahedronGeometry(0.7, 0);
         const icoEdges = new THREE.EdgesGeometry(icoGeometry);
         const icoMaterial = new THREE.LineBasicMaterial({
-            color: 0xffffff,
+            color: this.getThemeColor(),
             transparent: true,
             opacity: 0.5
         });
+        this.geometryMaterials.push(icoMaterial);
         const icosahedron = new THREE.LineSegments(icoEdges, icoMaterial);
-        icosahedron.position.set(-4.5, 2.5, -2);
+        icosahedron.position.set(-4.5 * positionScale, 2.5 * positionScale, -2);
         this.scene.add(icosahedron);
         this.geometries.push({ mesh: icosahedron, speed: 0.15 });
 
@@ -122,12 +167,13 @@ class HeroScene extends ThreeScene {
         const octaGeometry = new THREE.OctahedronGeometry(0.6, 0);
         const octaEdges = new THREE.EdgesGeometry(octaGeometry);
         const octaMaterial = new THREE.LineBasicMaterial({
-            color: 0xffffff,
+            color: this.getThemeColor(),
             transparent: true,
             opacity: 0.5
         });
+        this.geometryMaterials.push(octaMaterial);
         const octahedron = new THREE.LineSegments(octaEdges, octaMaterial);
-        octahedron.position.set(4.5, -2.5, -2);
+        octahedron.position.set(4.5 * positionScale, -2.5 * positionScale, -2);
         this.scene.add(octahedron);
         this.geometries.push({ mesh: octahedron, speed: 0.2 });
 
@@ -135,14 +181,33 @@ class HeroScene extends ThreeScene {
         const tetraGeometry = new THREE.TetrahedronGeometry(0.7, 0);
         const tetraEdges = new THREE.EdgesGeometry(tetraGeometry);
         const tetraMaterial = new THREE.LineBasicMaterial({
-            color: 0xffffff,
+            color: this.getThemeColor(),
             transparent: true,
             opacity: 0.45
         });
+        this.geometryMaterials.push(tetraMaterial);
         const tetrahedron = new THREE.LineSegments(tetraEdges, tetraMaterial);
-        tetrahedron.position.set(0, -3.5, -2);
+        tetrahedron.position.set(0, -3.5 * positionScale, -2);
         this.scene.add(tetrahedron);
         this.geometries.push({ mesh: tetrahedron, speed: 0.12 });
+    }
+
+    updateTheme() {
+        const color = this.getThemeColor();
+        if (this.particlesMaterial) {
+            this.particlesMaterial.color.setHex(color);
+        }
+        this.geometryMaterials.forEach(material => {
+            material.color.setHex(color);
+        });
+        // Update shooting stars
+        if (this.shootingStars) {
+            this.shootingStars.forEach(star => {
+                if (star.material) {
+                    star.material.color.setHex(color);
+                }
+            });
+        }
     }
 
     createShootingStar() {
@@ -159,7 +224,7 @@ class HeroScene extends ThreeScene {
         geometry.setFromPoints([start, end]);
 
         const material = new THREE.LineBasicMaterial({
-            color: 0xffffff,
+            color: this.getThemeColor(),
             transparent: true,
             opacity: 0
         });
@@ -169,6 +234,7 @@ class HeroScene extends ThreeScene {
 
         this.shootingStars.push({
             mesh: star,
+            material: material,
             life: 0,
             maxLife: 3.5,
             start: start.clone(),
@@ -403,7 +469,17 @@ class ContactScene extends ThreeScene {
 }
 
 // Initialize Three.js scenes
-document.addEventListener('DOMContentLoaded', () => {
+function initializeThreeScenes() {
+    // Check if Three.js is loaded
+    if (typeof THREE === 'undefined') {
+        console.warn('Three.js not loaded. Canvas backgrounds will be hidden.');
+        // Hide all canvases if Three.js fails to load
+        document.querySelectorAll('canvas').forEach(canvas => {
+            canvas.style.display = 'none';
+        });
+        return;
+    }
+
     // Hero scene
     const heroCanvas = document.getElementById('hero-canvas');
     if (heroCanvas) {
@@ -439,6 +515,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactCanvas = document.getElementById('contact-canvas');
     if (contactCanvas) {
         new ContactScene(contactCanvas);
+    }
+}
+
+// Wait for both DOM and Three.js to be ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Give time for external scripts to load
+    if (typeof THREE !== 'undefined') {
+        initializeThreeScenes();
+    } else {
+        // Wait a bit for Three.js to load from CDN
+        setTimeout(() => {
+            initializeThreeScenes();
+        }, 500);
     }
 });
 
@@ -621,6 +710,32 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
+// Mobile navigation toggle
+const navToggle = document.getElementById('nav-toggle');
+const navMenu = document.getElementById('nav-menu');
+const navLinks = document.querySelectorAll('.nav-link');
+
+navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    navToggle.classList.toggle('active');
+});
+
+// Close mobile menu when clicking a link
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+    });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target)) {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+    }
+});
+
 // Parallax effect for background images (if using assets)
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
@@ -635,3 +750,35 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// Theme toggle functionality
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.querySelector('.theme-icon');
+const html = document.documentElement;
+
+// Check for saved theme preference or default to 'dark'
+const currentTheme = localStorage.getItem('theme') || 'dark';
+html.setAttribute('data-theme', currentTheme);
+updateThemeIcon(currentTheme);
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+
+    // Update all Three.js scenes
+    if (window.threeScenes) {
+        window.threeScenes.forEach(scene => {
+            if (scene.updateTheme) {
+                scene.updateTheme();
+            }
+        });
+    }
+});
+
+function updateThemeIcon(theme) {
+    themeIcon.textContent = theme === 'dark' ? '☀' : '☾';
+}
