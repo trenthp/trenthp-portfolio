@@ -141,55 +141,9 @@ class HeroScene extends ThreeScene {
         this.shootingStars = [];
         this.shootingStarTimer = 0;
 
-        // Minimal 3D wireframe geometries - mystical and scientific
+        // No geometric shapes
         this.geometries = [];
         this.geometryMaterials = [];
-
-        // Responsive positioning based on viewport width
-        const isMobile = window.innerWidth < 768;
-        const positionScale = isMobile ? 0.5 : 1;
-
-        // Icosahedron - platonic solid, sacred geometry
-        const icoGeometry = new THREE.IcosahedronGeometry(0.7, 0);
-        const icoEdges = new THREE.EdgesGeometry(icoGeometry);
-        const icoMaterial = new THREE.LineBasicMaterial({
-            color: this.getThemeColor(),
-            transparent: true,
-            opacity: 0.5
-        });
-        this.geometryMaterials.push(icoMaterial);
-        const icosahedron = new THREE.LineSegments(icoEdges, icoMaterial);
-        icosahedron.position.set(-4.5 * positionScale, 2.5 * positionScale, -2);
-        this.scene.add(icosahedron);
-        this.geometries.push({ mesh: icosahedron, speed: 0.15 });
-
-        // Octahedron - double pyramid, cosmic structure
-        const octaGeometry = new THREE.OctahedronGeometry(0.6, 0);
-        const octaEdges = new THREE.EdgesGeometry(octaGeometry);
-        const octaMaterial = new THREE.LineBasicMaterial({
-            color: this.getThemeColor(),
-            transparent: true,
-            opacity: 0.5
-        });
-        this.geometryMaterials.push(octaMaterial);
-        const octahedron = new THREE.LineSegments(octaEdges, octaMaterial);
-        octahedron.position.set(4.5 * positionScale, -2.5 * positionScale, -2);
-        this.scene.add(octahedron);
-        this.geometries.push({ mesh: octahedron, speed: 0.2 });
-
-        // Tetrahedron - simplest platonic solid
-        const tetraGeometry = new THREE.TetrahedronGeometry(0.7, 0);
-        const tetraEdges = new THREE.EdgesGeometry(tetraGeometry);
-        const tetraMaterial = new THREE.LineBasicMaterial({
-            color: this.getThemeColor(),
-            transparent: true,
-            opacity: 0.45
-        });
-        this.geometryMaterials.push(tetraMaterial);
-        const tetrahedron = new THREE.LineSegments(tetraEdges, tetraMaterial);
-        tetrahedron.position.set(0, -3.5 * positionScale, -2);
-        this.scene.add(tetrahedron);
-        this.geometries.push({ mesh: tetrahedron, speed: 0.12 });
     }
 
     updateTheme() {
@@ -248,12 +202,6 @@ class HeroScene extends ThreeScene {
             this.particles.rotation.y += 0.0001;
             this.particles.rotation.x += 0.00005;
         }
-
-        // Animate geometries - slow 3D rotation
-        this.geometries.forEach(({ mesh, speed }) => {
-            mesh.rotation.x += 0.002 * speed;
-            mesh.rotation.y += 0.0015 * speed;
-        });
 
         // Shooting stars - reduced frequency
         this.shootingStarTimer += 0.016;
@@ -441,29 +389,81 @@ class SkillsScene extends ThreeScene {
     }
 }
 
-// Contact Scene - Dodecahedron (universe/ether element)
+// Contact Scene - Amplituhedron (4-particle approximation)
 class ContactScene extends ThreeScene {
     setupObjects() {
         this.camera.position.z = 4;
 
-        // Dodecahedron - the universe, esoteric fifth element
-        const geometry = new THREE.DodecahedronGeometry(1, 0);
-        const edges = new THREE.EdgesGeometry(geometry);
-        const material = new THREE.LineBasicMaterial({
+        // Amplituhedron - simplified 4-particle version
+        // Tetrahedron boundary with internal lines ("bundle of wheat")
+
+        // Tetrahedron vertices
+        const tetraVertices = [
+            new THREE.Vector3(0, 1, 0),      // top
+            new THREE.Vector3(-0.94, -0.33, 0.67),  // bottom front left
+            new THREE.Vector3(0.94, -0.33, 0.67),   // bottom front right
+            new THREE.Vector3(0, -0.33, -1.34)      // bottom back
+        ];
+
+        // Create tetrahedron boundary
+        const tetraGeometry = new THREE.TetrahedronGeometry(1, 0);
+        const tetraEdges = new THREE.EdgesGeometry(tetraGeometry);
+        const tetraMaterial = new THREE.LineBasicMaterial({
             color: 0xffffff,
             transparent: true,
-            opacity: 0.5
+            opacity: 0.4
+        });
+        const tetraFrame = new THREE.LineSegments(tetraEdges, tetraMaterial);
+        this.scene.add(tetraFrame);
+
+        // Create internal lines (bundle of wheat effect)
+        // Lines passing through the tetrahedron
+        const linesMaterial = new THREE.LineBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.3
         });
 
-        this.mesh = new THREE.LineSegments(edges, material);
-        this.scene.add(this.mesh);
+        this.internalLines = [];
+
+        // Generate oriented lines through the tetrahedron
+        const numLines = 12;
+        for (let i = 0; i < numLines; i++) {
+            const t = i / numLines;
+
+            // Create lines from various edges to create bundle effect
+            const startPoint = new THREE.Vector3(
+                Math.cos(t * Math.PI * 2) * 0.3,
+                0.5 - t * 1.2,
+                Math.sin(t * Math.PI * 2) * 0.3
+            );
+
+            const endPoint = new THREE.Vector3(
+                Math.cos(t * Math.PI * 2 + Math.PI) * 0.3,
+                -0.5 + t * 1.2,
+                Math.sin(t * Math.PI * 2 + Math.PI) * 0.3
+            );
+
+            const lineGeometry = new THREE.BufferGeometry().setFromPoints([startPoint, endPoint]);
+            const line = new THREE.Line(lineGeometry, linesMaterial);
+            this.scene.add(line);
+            this.internalLines.push(line);
+        }
+
+        this.tetraFrame = tetraFrame;
     }
 
     update() {
-        if (this.mesh) {
-            // Slow 3D rotation
-            this.mesh.rotation.x += 0.001;
-            this.mesh.rotation.y += 0.0015;
+        if (this.tetraFrame) {
+            // Slow 3D rotation to show the structure
+            this.tetraFrame.rotation.x += 0.001;
+            this.tetraFrame.rotation.y += 0.0015;
+
+            // Rotate internal lines together
+            this.internalLines.forEach(line => {
+                line.rotation.x = this.tetraFrame.rotation.x;
+                line.rotation.y = this.tetraFrame.rotation.y;
+            });
         }
     }
 }
