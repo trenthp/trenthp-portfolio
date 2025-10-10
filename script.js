@@ -279,14 +279,21 @@ class PillarScene extends ThreeScene {
         }
 
         const edges = new THREE.EdgesGeometry(geometry);
-        const material = new THREE.LineBasicMaterial({
-            color: 0xffffff,
+        this.material = new THREE.LineBasicMaterial({
+            color: this.getThemeColor(),
             transparent: true,
             opacity: 0.6
         });
 
-        this.mesh = new THREE.LineSegments(edges, material);
+        this.mesh = new THREE.LineSegments(edges, this.material);
         this.scene.add(this.mesh);
+    }
+
+    updateTheme() {
+        const color = this.getThemeColor();
+        if (this.material) {
+            this.material.color.setHex(color);
+        }
     }
 
     update() {
@@ -306,7 +313,8 @@ class ExperienceScene extends ThreeScene {
         // Minimal grid - more sparse, technical diagram
         const gridSize = 20;
         const divisions = 10;
-        const gridHelper = new THREE.GridHelper(gridSize, divisions, 0xffffff, 0xffffff);
+        const color = this.getThemeColor();
+        const gridHelper = new THREE.GridHelper(gridSize, divisions, color, color);
         gridHelper.rotation.x = Math.PI / 2;
         gridHelper.position.z = -2;
         gridHelper.material.transparent = true;
@@ -314,6 +322,13 @@ class ExperienceScene extends ThreeScene {
         this.scene.add(gridHelper);
 
         this.grid = gridHelper;
+    }
+
+    updateTheme() {
+        const color = this.getThemeColor();
+        if (this.grid && this.grid.material) {
+            this.grid.material.color.setHex(color);
+        }
     }
 
     update() {
@@ -338,14 +353,23 @@ class CaseStudyScene extends ThreeScene {
         geometries.forEach(({ geom, pos }) => {
             const edges = new THREE.EdgesGeometry(geom);
             const material = new THREE.LineBasicMaterial({
-                color: 0xffffff,
+                color: this.getThemeColor(),
                 transparent: true,
                 opacity: 0.4
             });
             const mesh = new THREE.LineSegments(edges, material);
             mesh.position.set(...pos);
             this.scene.add(mesh);
-            this.shapes.push({ mesh });
+            this.shapes.push({ mesh, material });
+        });
+    }
+
+    updateTheme() {
+        const color = this.getThemeColor();
+        this.shapes.forEach(({ material }) => {
+            if (material) {
+                material.color.setHex(color);
+            }
         });
     }
 
@@ -370,21 +394,30 @@ class SkillsScene extends ThreeScene {
         radii.forEach((radius, i) => {
             const geometry = new THREE.TorusGeometry(radius, 0.008, 3, 48);
             const material = new THREE.MeshBasicMaterial({
-                color: 0xffffff,
+                color: this.getThemeColor(),
                 transparent: true,
                 opacity: 0.15 - (i * 0.03)
             });
             const circle = new THREE.Mesh(geometry, material);
             circle.rotation.x = Math.PI / 2;
             this.scene.add(circle);
-            this.circles.push(circle);
+            this.circles.push({ mesh: circle, material });
+        });
+    }
+
+    updateTheme() {
+        const color = this.getThemeColor();
+        this.circles.forEach(({ material }) => {
+            if (material) {
+                material.color.setHex(color);
+            }
         });
     }
 
     update() {
         // Very slow rotation
-        this.circles.forEach((circle, i) => {
-            circle.rotation.z += 0.0001 * (i + 1);
+        this.circles.forEach(({ mesh }, i) => {
+            mesh.rotation.z += 0.0001 * (i + 1);
         });
     }
 }
@@ -408,18 +441,18 @@ class ContactScene extends ThreeScene {
         // Create tetrahedron boundary
         const tetraGeometry = new THREE.TetrahedronGeometry(1, 0);
         const tetraEdges = new THREE.EdgesGeometry(tetraGeometry);
-        const tetraMaterial = new THREE.LineBasicMaterial({
-            color: 0xffffff,
+        this.tetraMaterial = new THREE.LineBasicMaterial({
+            color: this.getThemeColor(),
             transparent: true,
             opacity: 0.4
         });
-        const tetraFrame = new THREE.LineSegments(tetraEdges, tetraMaterial);
+        const tetraFrame = new THREE.LineSegments(tetraEdges, this.tetraMaterial);
         this.scene.add(tetraFrame);
 
         // Create internal lines (bundle of wheat effect)
         // Lines passing through the tetrahedron
-        const linesMaterial = new THREE.LineBasicMaterial({
-            color: 0xffffff,
+        this.linesMaterial = new THREE.LineBasicMaterial({
+            color: this.getThemeColor(),
             transparent: true,
             opacity: 0.3
         });
@@ -445,12 +478,22 @@ class ContactScene extends ThreeScene {
             );
 
             const lineGeometry = new THREE.BufferGeometry().setFromPoints([startPoint, endPoint]);
-            const line = new THREE.Line(lineGeometry, linesMaterial);
+            const line = new THREE.Line(lineGeometry, this.linesMaterial);
             this.scene.add(line);
             this.internalLines.push(line);
         }
 
         this.tetraFrame = tetraFrame;
+    }
+
+    updateTheme() {
+        const color = this.getThemeColor();
+        if (this.tetraMaterial) {
+            this.tetraMaterial.color.setHex(color);
+        }
+        if (this.linesMaterial) {
+            this.linesMaterial.color.setHex(color);
+        }
     }
 
     update() {
@@ -629,6 +672,7 @@ gsap.utils.toArray('.skill-category').forEach((category, i) => {
 // Counter animation for stats
 function animateCounter(element) {
     const target = parseFloat(element.dataset.target);
+    const suffix = element.dataset.suffix || '';
     const duration = 2;
     const increment = target / (duration * 60);
     let current = 0;
@@ -637,7 +681,8 @@ function animateCounter(element) {
     const timer = setInterval(() => {
         current += increment;
         if (current >= target) {
-            element.textContent = isDecimal ? target.toFixed(1) : Math.ceil(target);
+            const finalValue = isDecimal ? target.toFixed(1) : Math.ceil(target);
+            element.textContent = finalValue + suffix;
             clearInterval(timer);
         } else {
             element.textContent = isDecimal ? current.toFixed(1) : Math.ceil(current);
