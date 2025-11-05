@@ -144,6 +144,9 @@ class HeroScene extends ThreeScene {
         // No geometric shapes
         this.geometries = [];
         this.geometryMaterials = [];
+
+        // Motion control - starts enabled
+        this.motionEnabled = true;
     }
 
     updateTheme() {
@@ -162,6 +165,10 @@ class HeroScene extends ThreeScene {
                 }
             });
         }
+    }
+
+    setMotionEnabled(enabled) {
+        this.motionEnabled = enabled;
     }
 
     createShootingStar() {
@@ -197,54 +204,57 @@ class HeroScene extends ThreeScene {
     }
 
     update() {
-        // Rotate starfield - slow drift
-        if (this.particles) {
-            this.particles.rotation.y += 0.0001;
-            this.particles.rotation.x += 0.00005;
-        }
+        // Only animate if motion is enabled
+        if (this.motionEnabled) {
+            // Rotate starfield - slow drift
+            if (this.particles) {
+                this.particles.rotation.y += 0.0001;
+                this.particles.rotation.x += 0.00005;
+            }
 
-        // Shooting stars - reduced frequency
-        this.shootingStarTimer += 0.016;
-        if (this.shootingStarTimer > 3 && Math.random() < 0.015) {
-            this.createShootingStar();
-            this.shootingStarTimer = 0;
-        }
+            // Shooting stars - reduced frequency
+            this.shootingStarTimer += 0.016;
+            if (this.shootingStarTimer > 3 && Math.random() < 0.015) {
+                this.createShootingStar();
+                this.shootingStarTimer = 0;
+            }
 
-        // Update shooting stars
-        for (let i = this.shootingStars.length - 1; i >= 0; i--) {
-            const star = this.shootingStars[i];
-            star.life += 0.016;
+            // Update shooting stars
+            for (let i = this.shootingStars.length - 1; i >= 0; i--) {
+                const star = this.shootingStars[i];
+                star.life += 0.016;
 
-            if (star.life < star.maxLife) {
-                // Fade in and out - slower, more gradual
-                const progress = star.life / star.maxLife;
-                if (progress < 0.3) {
-                    // Slow fade in
-                    star.mesh.material.opacity = progress * 2;
-                } else if (progress > 0.6) {
-                    // Slow fade out
-                    star.mesh.material.opacity = (1 - progress) * 2.5;
+                if (star.life < star.maxLife) {
+                    // Fade in and out - slower, more gradual
+                    const progress = star.life / star.maxLife;
+                    if (progress < 0.3) {
+                        // Slow fade in
+                        star.mesh.material.opacity = progress * 2;
+                    } else if (progress > 0.6) {
+                        // Slow fade out
+                        star.mesh.material.opacity = (1 - progress) * 2.5;
+                    } else {
+                        star.mesh.material.opacity = 0.6;
+                    }
+
+                    // Move the star - slower speed
+                    const positions = star.mesh.geometry.attributes.position.array;
+                    positions[0] += star.direction.x * 0.016;
+                    positions[1] += star.direction.y * 0.016;
+                    positions[2] += star.direction.z * 0.016;
+                    positions[3] += star.direction.x * 0.016;
+                    positions[4] += star.direction.y * 0.016;
+                    positions[5] += star.direction.z * 0.016;
+                    star.mesh.geometry.attributes.position.needsUpdate = true;
                 } else {
-                    star.mesh.material.opacity = 0.6;
+                    // Remove dead star
+                    this.scene.remove(star.mesh);
+                    this.shootingStars.splice(i, 1);
                 }
-
-                // Move the star - slower speed
-                const positions = star.mesh.geometry.attributes.position.array;
-                positions[0] += star.direction.x * 0.016;
-                positions[1] += star.direction.y * 0.016;
-                positions[2] += star.direction.z * 0.016;
-                positions[3] += star.direction.x * 0.016;
-                positions[4] += star.direction.y * 0.016;
-                positions[5] += star.direction.z * 0.016;
-                star.mesh.geometry.attributes.position.needsUpdate = true;
-            } else {
-                // Remove dead star
-                this.scene.remove(star.mesh);
-                this.shootingStars.splice(i, 1);
             }
         }
 
-        // Mouse parallax - very subtle
+        // Mouse parallax - very subtle (always active)
         this.targetRotation.x = this.mouse.y * 0.02;
         this.targetRotation.y = this.mouse.x * 0.02;
 
@@ -583,8 +593,8 @@ gsap.from('.hero-text', {
     ease: 'power3.out'
 });
 
-gsap.from('.scroll-indicator', {
-    opacity: 0,
+gsap.to('.scroll-indicator', {
+    opacity: 1,
     duration: 1,
     delay: 1.5,
     ease: 'power2.out'
@@ -826,4 +836,34 @@ themeToggle.addEventListener('click', () => {
 
 function updateThemeIcon(theme) {
     themeIcon.textContent = theme === 'dark' ? '☀' : '☾';
+}
+
+// Motion toggle functionality
+const motionToggle = document.getElementById('motion-toggle');
+const motionIcon = document.querySelector('.motion-icon');
+
+// Check for saved motion preference or default to 'enabled'
+const currentMotion = localStorage.getItem('motion') || 'enabled';
+updateMotionState(currentMotion);
+
+motionToggle.addEventListener('click', () => {
+    const currentMotion = localStorage.getItem('motion') || 'enabled';
+    const newMotion = currentMotion === 'enabled' ? 'disabled' : 'enabled';
+
+    localStorage.setItem('motion', newMotion);
+    updateMotionState(newMotion);
+});
+
+function updateMotionState(motion) {
+    const enabled = motion === 'enabled';
+    motionIcon.textContent = enabled ? '▶' : '⏸';
+
+    // Update all Hero scenes (only HeroScene has motion)
+    if (window.threeScenes) {
+        window.threeScenes.forEach(scene => {
+            if (scene instanceof HeroScene && scene.setMotionEnabled) {
+                scene.setMotionEnabled(enabled);
+            }
+        });
+    }
 }

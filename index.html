@@ -17,14 +17,27 @@
                 <span class="close">✕</span>
             </button>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#work" class="nav-link">Work</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="resume.html" class="nav-link nav-link--special">Resume</a></li>
-                <li><button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                    <span class="theme-icon">☀</span>
-                </button></li>
+                <li class="nav-group nav-group--links">
+                    <ul class="nav-group-list">
+                        <li><a href="#about" class="nav-link">About</a></li>
+                        <li><a href="#experience" class="nav-link">Experience</a></li>
+                        <li><a href="#work" class="nav-link">Work</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </li>
+                <li class="nav-group nav-group--resume">
+                    <a href="resume.html" class="nav-link nav-link--special">Resume</a>
+                </li>
+                <li class="nav-group nav-group--toggles">
+                    <ul class="nav-group-list">
+                        <li><button id="motion-toggle" class="motion-toggle" aria-label="Toggle motion">
+                            <span class="motion-icon">▶</span>
+                        </button></li>
+                        <li><button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                            <span class="theme-icon">☀</span>
+                        </button></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -36,24 +49,26 @@
             <div class="hero-text">
                 <p class="hero-label">Product Design & Leadership</p>
                 <h1 class="hero-title">Trent Holms Petersen</h1>
-                <p class="hero-subtitle">Building products that matter.<br>Leading teams that deliver.</p>
+                <p class="hero-subtitle">Product Design Leader building high-performing teams and delivering impactful user experiences.</p>
                 <div class="hero-cta">
-                    <a href="#work" class="btn btn--primary">View Work</a>
                     <a href="#contact" class="btn btn--secondary">Get in Touch</a>
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <span>Scroll</span>
+        <a href="#about" class="scroll-indicator">
+            <span>Scroll for More</span>
             <div class="scroll-line"></div>
-        </div>
+        </a>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Design Philosophy</h2>
+                <h2 class="section-title">About summary</h2>
+                <p class="section-subtitle">Visionary Product Design Leader with 12+ years shaping transformative, customer-centric digital ecosystems across B2B and B2C SaaS. Proven ability to build and mentor high-performing design teams, aligning cross-functional efforts to translate complex business ambiguity into actionable strategies and clear design visions. Track record of driving significant user growth and engagement by elevating product experiences, exemplified by improving a flagship app's rating from 2.3 to 4.7+. Expertise in Product Strategy, Team Leadership, Data-Informed Design, and scaling Design Systems & Operations.</p>
+                <br>
+                <h3 class="section-title">Design Philosophy</h3>
                 <p class="section-subtitle">Three pillars guide every decision</p>
             </div>
 
@@ -64,7 +79,7 @@
                     </div>
                     <div class="pillar-content">
                         <h3>Product</h3>
-                        <p>User-centered solutions backed by data. Transforming complex problems into elegant experiences that drive measurable business outcomes.</p>
+                        <p>User-centered solutions backed by data, evidence, and reasoning. Transforming complex problems into elegant experiences that drive measurable business outcomes.</p>
                     </div>
                 </div>
 
@@ -91,7 +106,7 @@
 
             <div class="about-stats">
                 <div class="stat">
-                    <div class="stat-value" data-target="10" data-suffix="+">0</div>
+                    <div class="stat-value" data-target="12" data-suffix="+">0</div>
                     <div class="stat-label">Years Experience</div>
                 </div>
                 <div class="stat">
@@ -123,9 +138,9 @@
                         <h3>Director of Product Design</h3>
                         <h4>OPTAVIA</h4>
                         <ul>
-                            <li>Led cross-functional teams to dramatically improve app ratings from 2.3 to 4.7 (Client) and 4.9 (Coach)</li>
+                            <li>Led cross-functional teams to dramatically improve app ratings from 2.3 to 4.7 (B2C) and 4.9 (B2B)</li>
                             <li>Established data-informed design strategy and UX/UI quality standards across product organization</li>
-                            <li>Directed multichannel product design for B2C and B2B mobile applications serving thousands of users</li>
+                            <li>Directed multichannel product design for B2C and B2B mobile applications serving hundreds of thousands of users</li>
                             <li>Championed user research, design systems, and best practices to accelerate product delivery</li>
                         </ul>
                     </div>
@@ -296,6 +311,7 @@
                     <div class="contact-item">
                         <h3>Location</h3>
                         <p>Available for remote opportunities</p>
+                        <p>Relocation available for the right opportunities</p>
                     </div>
                 </div>
 
