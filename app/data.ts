@@ -32,25 +32,25 @@ export const PROJECTS: Project[] = [
     name: 'OPTAVIA Coach Experience',
     description:
       'Transformed coach mobile app through user-centered redesign, achieving industry-leading 4.9 rating. Led end-to-end product strategy, user research, and UI execution.',
-    link: '#',
+    link: 'https://optavia.com',
     video:
-      'https://via.placeholder.com/640x360?text=OPTAVIA+Coach+App',
+      'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=640&h=360&fit=crop',
     id: 'project1',
   },
   {
     name: 'Client App Redesign',
     description: 'Led comprehensive product transformation increasing app rating from 2.3 to 4.7. Established design systems, conducted user research, and drove cross-functional collaboration.',
-    link: '#',
+    link: '#case-study',
     video:
-      'https://via.placeholder.com/640x360?text=Client+App+Redesign',
+      'https://images.unsplash.com/photo-1522869635100-ce9f1db0a47c?w=640&h=360&fit=crop',
     id: 'project2',
   },
   {
     name: 'Emerging Technology Integration',
     description: 'Pioneered adoption of AI-powered features and conversational UI patterns. Created compelling prototypes and northstar visions for next-generation product experiences.',
-    link: '#',
+    link: '#case-study',
     video:
-      'https://via.placeholder.com/640x360?text=AI+Integration',
+      'https://images.unsplash.com/photo-1699681336851-eda00f6e4c01?w=640&h=360&fit=crop',
     id: 'project3',
   },
 ]
@@ -77,29 +77,15 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 export const BLOG_POSTS: BlogPost[] = [
   {
     title: 'Exploring the Intersection of Design, AI, and Design Engineering',
-    description: 'How AI is changing the way we design',
+    description: 'Design and artificial intelligence are increasingly intertwined, driving innovation across industries. Exploring the future of design engineering.',
     link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
     uid: 'blog-1',
   },
   {
-    title: 'Why I left my job to start my own company',
-    description:
-      'A deep dive into my decision to leave my job and start my own company',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-2',
-  },
-  {
-    title: 'What I learned from my first year of freelancing',
-    description:
-      'A look back at my first year of freelancing and what I learned',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-3',
-  },
-  {
     title: 'How to Export Metadata from MDX for Next.js SEO',
-    description: 'A guide on exporting metadata from MDX files to leverage Next.js SEO features.',
+    description: 'A guide on exporting metadata from MDX files to leverage Next.js SEO features and improve discoverability.',
     link: '/blog/example-mdx-metadata',
-    uid: 'blog-4',
+    uid: 'blog-2',
   },
 ]
 
