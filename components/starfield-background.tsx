@@ -59,20 +59,20 @@ export function StarfieldBackground() {
 
     // Create particles
     const particlesGeometry = new THREE.BufferGeometry()
-    const particleCount = 800
+    const particleCount = 2000
     const positions = new Float32Array(particleCount * 3)
 
     for (let i = 0; i < particleCount * 3; i += 3) {
-      positions[i] = (Math.random() - 0.5) * 30
-      positions[i + 1] = (Math.random() - 0.5) * 30
-      positions[i + 2] = (Math.random() - 0.5) * 30
+      positions[i] = (Math.random() - 0.5) * 80
+      positions[i + 1] = (Math.random() - 0.5) * 60
+      positions[i + 2] = (Math.random() - 0.5) * 80
     }
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
 
     const particlesMaterial = new THREE.PointsMaterial({
       color: getThemeColor(),
-      size: 0.03,
+      size: 0.04,
       transparent: true,
       opacity: 0.8,
       blending: THREE.AdditiveBlending,
@@ -126,9 +126,9 @@ export function StarfieldBackground() {
       // Create new shooting star occasionally
       if (motionEnabled && starsVisible && Math.random() < 0.015) {
         const startPos = new THREE.Vector3(
-          (Math.random() - 0.5) * 30,
-          (Math.random() - 0.5) * 15 + 10,
-          (Math.random() - 0.5) * 30
+          (Math.random() - 0.5) * 80,
+          (Math.random() - 0.5) * 30 + 15,
+          (Math.random() - 0.5) * 80
         )
         const endPos = startPos.clone()
         endPos.x -= 2
