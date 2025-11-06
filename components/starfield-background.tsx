@@ -124,32 +124,36 @@ export function StarfieldBackground() {
       })
 
       // Create new shooting star occasionally
-      if (motionEnabled && starsVisible && Math.random() < 0.015) {
+      if (motionEnabled && starsVisible && Math.random() < 0.035) {
         const startPos = new THREE.Vector3(
           (Math.random() - 0.5) * 80,
           (Math.random() - 0.5) * 30 + 15,
           (Math.random() - 0.5) * 80
         )
         const endPos = startPos.clone()
-        endPos.x -= 2
-        endPos.y -= 1.5
+        endPos.x -= 4
+        endPos.y -= 2.5
 
-        const geometry = new THREE.BufferGeometry().setFromPoints([startPos, endPos])
-        const material = new THREE.LineBasicMaterial({
+        const points = [startPos, endPos]
+        const geometry = new THREE.BufferGeometry().setFromPoints(points)
+        const material = new THREE.PointsMaterial({
           color: getThemeColor(),
+          size: 0.15,
           transparent: true,
-          opacity: 0.6,
+          opacity: 0.9,
+          blending: THREE.AdditiveBlending,
+          sizeAttenuation: true,
         })
 
-        const star = new THREE.Line(geometry, material)
+        const star = new THREE.Points(geometry, material)
         scene.add(star)
 
         shootingStarsRef.current.push({
           mesh: star,
           material: material,
           life: 0,
-          maxLife: 3.5,
-          direction: new THREE.Vector3(-1.2, -0.8, 0),
+          maxLife: 2.5,
+          direction: new THREE.Vector3(-2.5, -1.5, 0),
         })
       }
 
