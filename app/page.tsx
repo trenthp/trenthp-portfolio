@@ -137,9 +137,29 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Focused on creating intuitive and performant web experiences.
-            Bridging the gap between design and development.
+            Product Design Leader with 12+ years shaping transformative, customer-centric digital ecosystems across B2B and B2C SaaS. Proven ability to build and mentor high-performing design teams, aligning cross-functional efforts to translate complex business ambiguity into actionable strategies and clear design visions. Track record of driving significant user growth by elevating product experiences.
           </p>
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">Design Philosophy</h3>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div className="rounded-lg bg-zinc-50 p-4 dark:bg-zinc-900">
+            <h4 className="font-medium text-zinc-900 dark:text-zinc-50">Product</h4>
+            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">User-centered solutions backed by data, evidence, and reasoning.</p>
+          </div>
+          <div className="rounded-lg bg-zinc-50 p-4 dark:bg-zinc-900">
+            <h4 className="font-medium text-zinc-900 dark:text-zinc-50">People</h4>
+            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Empowering teams to excel through trust-based relationships.</p>
+          </div>
+          <div className="rounded-lg bg-zinc-50 p-4 dark:bg-zinc-900">
+            <h4 className="font-medium text-zinc-900 dark:text-zinc-50">Progress</h4>
+            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Continuous improvement through iteration and meaningful value.</p>
+          </div>
         </div>
       </motion.section>
 

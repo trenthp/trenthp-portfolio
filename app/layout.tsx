@@ -14,15 +14,15 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nim-fawn.vercel.app/'),
+  metadataBase: new URL('https://trenthp.dev/'),
   alternates: {
     canonical: '/'
   },
   title: {
-    default: 'Nim - Personal website template',
-    template: '%s | Nim'
+    default: 'Trent Holms Petersen - Product Design Director',
+    template: '%s | Trent Holms Petersen'
   },
-  description:  'Nim is a free and open-source personal website template built with Next.js 15, React 19 and Motion-Primitives.',
+  description:  'Senior UX Design Director specializing in data-driven product strategy, team leadership, and transformative digital experiences.',
 };
 
 const geist = Geist({

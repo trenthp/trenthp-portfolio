@@ -29,48 +29,48 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Motion Primitives Pro',
+    name: 'OPTAVIA Coach Experience',
     description:
-      'Advanced components and templates to craft beautiful websites.',
-    link: 'https://pro.motion-primitives.com/',
+      'Transformed coach mobile app through user-centered redesign, achieving industry-leading 4.9 rating. Led end-to-end product strategy, user research, and UI execution.',
+    link: '#',
     video:
-      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
+      'https://via.placeholder.com/640x360?text=OPTAVIA+Coach+App',
     id: 'project1',
   },
   {
-    name: 'Motion Primitives',
-    description: 'UI kit to make beautiful, animated interfaces.',
-    link: 'https://motion-primitives.com/',
+    name: 'Client App Redesign',
+    description: 'Led comprehensive product transformation increasing app rating from 2.3 to 4.7. Established design systems, conducted user research, and drove cross-functional collaboration.',
+    link: '#',
     video:
-      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
+      'https://via.placeholder.com/640x360?text=Client+App+Redesign',
     id: 'project2',
+  },
+  {
+    name: 'Emerging Technology Integration',
+    description: 'Pioneered adoption of AI-powered features and conversational UI patterns. Created compelling prototypes and northstar visions for next-generation product experiences.',
+    link: '#',
+    video:
+      'https://via.placeholder.com/640x360?text=AI+Integration',
+    id: 'project3',
   },
 ]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: 'Reglazed Studio',
-    title: 'CEO',
-    start: '2024',
+    company: 'OPTAVIA',
+    title: 'Director of Product Design',
+    start: '2020',
     end: 'Present',
-    link: 'https://ibelick.com',
+    link: 'https://optavia.com',
     id: 'work1',
   },
   {
-    company: 'Freelance',
-    title: 'Design Engineer',
-    start: '2022',
-    end: '2024',
-    link: 'https://ibelick.com',
+    company: 'Various Organizations',
+    title: 'Senior Product Design Leadership',
+    start: '2012',
+    end: '2020',
+    link: '#',
     id: 'work2',
-  },
-  {
-    company: 'Freelance',
-    title: 'Front-end Developer',
-    start: '2017',
-    end: 'Present',
-    link: 'https://ibelick.com',
-    id: 'work3',
   },
 ]
 
@@ -105,21 +105,13 @@ export const BLOG_POSTS: BlogPost[] = [
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
-    label: 'Github',
-    link: 'https://github.com/ibelick',
-  },
-  {
-    label: 'Twitter',
-    link: 'https://twitter.com/ibelick',
-  },
-  {
     label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/ibelick',
+    link: 'https://linkedin.com/in/trenthp',
   },
   {
-    label: 'Instagram',
-    link: 'https://www.instagram.com/ibelick',
+    label: 'Email',
+    link: 'mailto:trentpetersen@gmail.com',
   },
 ]
 
-export const EMAIL = 'your@email.com'
+export const EMAIL = 'trentpetersen@gmail.com'
