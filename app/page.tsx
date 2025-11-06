@@ -270,6 +270,51 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
+        <h3 className="mb-5 text-lg font-medium">Expertise</h3>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-2">
+            <h4 className="font-medium text-zinc-900 dark:text-zinc-50">Design Leadership</h4>
+            <ul className="space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
+              <li>• Team Management (10+ designers)</li>
+              <li>• Design Strategy</li>
+              <li>• Stakeholder Management</li>
+              <li>• Design Systems</li>
+            </ul>
+          </div>
+          <div className="space-y-2">
+            <h4 className="font-medium text-zinc-900 dark:text-zinc-50">UX/UI Design</h4>
+            <ul className="space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
+              <li>• User Research</li>
+              <li>• Interaction Design</li>
+              <li>• Prototyping</li>
+              <li>• Usability Testing</li>
+            </ul>
+          </div>
+          <div className="space-y-2">
+            <h4 className="font-medium text-zinc-900 dark:text-zinc-50">Product Strategy</h4>
+            <ul className="space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
+              <li>• Product Roadmapping</li>
+              <li>• Data Analysis</li>
+              <li>• Agile Methodology</li>
+              <li>• Cross-functional Collaboration</li>
+            </ul>
+          </div>
+          <div className="space-y-2">
+            <h4 className="font-medium text-zinc-900 dark:text-zinc-50">Tools & Platforms</h4>
+            <ul className="space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
+              <li>• Figma / Sketch</li>
+              <li>• Adobe Creative Suite</li>
+              <li>• Prototyping Tools</li>
+              <li>• Analytics Platforms</li>
+            </ul>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
         <h3 className="mb-5 text-lg font-medium">Connect</h3>
         <p className="mb-5 text-zinc-600 dark:text-zinc-400">
           Feel free to contact me at{' '}
