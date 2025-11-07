@@ -28,7 +28,8 @@ export function StarfieldBackground() {
       case 'blue':
         return 0x1c6be6 // bright blue from palette
       default:
-        return 0xffffff
+        // For 'system' theme or undefined, return black (visible on light backgrounds by default)
+        return 0x111111
     }
   }
 

@@ -5,32 +5,17 @@ import { Play, Pause, Eye, EyeOff, MoonIcon, SunIcon, Palette } from 'lucide-rea
 import { useEffect, useState } from 'react'
 import { useBackground } from '@/lib/background-context'
 import { useTheme } from 'next-themes'
-import { AnimatedBackground } from '@/components/ui/animated-background'
 
-const THEMES_OPTIONS = [
-  {
-    label: 'Light',
-    id: 'light',
-    icon: <SunIcon className="h-4 w-4" />,
-  },
-  {
-    label: 'Dark',
-    id: 'dark',
-    icon: <MoonIcon className="h-4 w-4" />,
-  },
-  {
-    label: 'Sepia',
-    id: 'sepia',
-    icon: <Palette className="h-4 w-4" />,
-  },
-  {
-    label: 'Blue',
-    id: 'blue',
-    icon: <Palette className="h-4 w-4" />,
-  },
-]
+const THEME_ORDER = ['dark', 'light', 'sepia', 'blue'] as const
 
-function ThemeSwitch() {
+const THEME_CONFIG = {
+  dark: { label: 'Dark', icon: <MoonIcon className="h-4 w-4" /> },
+  light: { label: 'Light', icon: <SunIcon className="h-4 w-4" /> },
+  sepia: { label: 'Sepia', icon: <Palette className="h-4 w-4" /> },
+  blue: { label: 'Blue', icon: <Palette className="h-4 w-4" /> },
+}
+
+function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
@@ -42,34 +27,23 @@ function ThemeSwitch() {
     return null
   }
 
+  // Handle 'system' theme or undefined by defaulting to 'dark'
+  const effectiveTheme = (theme && THEME_ORDER.includes(theme as any)) ? theme : 'dark'
+  const currentIndex = THEME_ORDER.indexOf(effectiveTheme as any)
+  const nextIndex = (currentIndex + 1) % THEME_ORDER.length
+  const nextTheme = THEME_ORDER[nextIndex]
+  const currentConfig = THEME_CONFIG[effectiveTheme as keyof typeof THEME_CONFIG]
+  const nextConfig = THEME_CONFIG[nextTheme]
+
   return (
-    <AnimatedBackground
-      className="pointer-events-none rounded-lg bg-zinc-100 dark:bg-zinc-800"
-      defaultValue={theme}
-      transition={{
-        type: 'spring',
-        bounce: 0,
-        duration: 0.2,
-      }}
-      enableHover={false}
-      onValueChange={(id) => {
-        setTheme(id as string)
-      }}
+    <button
+      onClick={() => setTheme(nextTheme)}
+      className="inline-flex h-7 w-7 items-center justify-center rounded text-zinc-500 transition-colors duration-100 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800 sepia:text-amber-700 sepia:hover:bg-amber-100 blue:text-blue-300 blue:hover:bg-blue-900"
+      aria-label={`Theme: ${currentConfig?.label}. Click to cycle to ${nextConfig?.label}`}
+      title={`Theme: ${currentConfig?.label}`}
     >
-      {THEMES_OPTIONS.map((themeOption) => {
-        return (
-          <button
-            key={themeOption.id}
-            className="inline-flex h-7 w-7 items-center justify-center text-zinc-500 transition-colors duration-100 focus-visible:outline-2 data-[checked=true]:text-zinc-950 dark:text-zinc-400 dark:data-[checked=true]:text-zinc-50"
-            type="button"
-            aria-label={`Switch to ${themeOption.label} theme`}
-            data-id={themeOption.id}
-          >
-            {themeOption.icon}
-          </button>
-        )
-      })}
-    </AnimatedBackground>
+      {currentConfig?.icon}
+    </button>
   )
 }
 
@@ -139,7 +113,7 @@ export function Header() {
       </div>
       <div className="flex items-center gap-2 text-xs text-zinc-400">
         <StarsControl />
-        <ThemeSwitch />
+        <ThemeToggle />
       </div>
     </header>
   )
