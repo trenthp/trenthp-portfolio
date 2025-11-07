@@ -119,7 +119,7 @@ export default function Personal() {
     setMounted(true)
   }, [])
 
-  const currentTheme = mounted ? ((theme as keyof typeof SPOTLIGHT_COLORS) || 'light') : 'light'
+  const currentTheme = (mounted && theme && theme in SPOTLIGHT_COLORS ? theme : 'light') as keyof typeof SPOTLIGHT_COLORS
   const spotlightColors = SPOTLIGHT_COLORS[currentTheme]
 
   return (
