@@ -13,6 +13,9 @@ export function StarfieldBackground() {
   const particlesMeshRef = useRef<THREE.Points | null>(null)
   const shootingStarsRef = useRef<Array<any>>([])
   const animationFrameRef = useRef<number | null>(null)
+  const motionEnabledRef = useRef(true)
+  const starsVisibleRef = useRef(true)
+  const lastShootingStarSpawnRef = useRef(0)
 
   const { theme } = useTheme()
   const { motionEnabled, starsVisible } = useBackground()
@@ -20,15 +23,15 @@ export function StarfieldBackground() {
   const getThemeColor = () => {
     switch (theme) {
       case 'dark':
-        return 0xffffff // white
+        return 0xf7f6f4 // #F7F6F4 (stars color per spec)
       case 'light':
-        return 0x111111 // dark gray from palette
+        return 0x111111 // #111111 (stars color per spec)
       case 'sepia':
-        return 0x8b6f47 // sepia brown
+        return 0x5f4b32 // #5F4B32 (stars color per spec)
       case 'blue':
-        return 0x1c6be6 // bright blue from palette
+        return 0xe5eeff // #E5EEFF (stars color per spec)
       default:
-        // For 'system' theme or undefined, return black (visible on light backgrounds by default)
+        // Fallback for system theme
         return 0x111111
     }
   }
@@ -82,17 +85,15 @@ export function StarfieldBackground() {
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
 
-    // Use white as initial color - will be updated by theme effect
     const particlesMaterial = new THREE.PointsMaterial({
-      color: 0xffffff,
-      size: 0.1,
+      color: getThemeColor(),
+      size: 0.04,
       transparent: true,
       opacity: 0.8,
       blending: THREE.AdditiveBlending,
     })
 
     const particles = new THREE.Points(particlesGeometry, particlesMaterial)
-    particles.visible = starsVisible
     scene.add(particles)
 
     sceneRef.current = scene
@@ -101,12 +102,15 @@ export function StarfieldBackground() {
     particlesMeshRef.current = particles
 
     // Animation loop
+    let frameCount = 0
     const animate = () => {
       animationFrameRef.current = requestAnimationFrame(animate)
+      frameCount++
 
-      if (motionEnabled && starsVisible) {
-        particles.rotation.y += 0.00005
-        particles.rotation.x += 0.000025
+      // Use refs to get current state values
+      if (motionEnabledRef.current && starsVisibleRef.current) {
+        particles.rotation.y += 0.0001
+        particles.rotation.x += 0.00005
       }
 
       // Update shooting stars
@@ -137,8 +141,11 @@ export function StarfieldBackground() {
         return true
       })
 
-      // Create new shooting star occasionally
-      if (motionEnabled && starsVisible && Math.random() < 0.015) {
+      // Create new shooting star occasionally - only when motion is enabled AND stars are visible
+      // With cooldown to prevent multiple spawning at once
+      const timeSinceLastSpawn = frameCount - lastShootingStarSpawnRef.current
+      if (motionEnabledRef.current && starsVisibleRef.current && timeSinceLastSpawn > 40 && Math.random() < 0.008) {
+        lastShootingStarSpawnRef.current = frameCount
         const startPos = new THREE.Vector3(
           (Math.random() - 0.5) * 30,
           (Math.random() - 0.5) * 15 + 10,
@@ -158,12 +165,15 @@ export function StarfieldBackground() {
         const star = new THREE.Line(geometry, material)
         scene.add(star)
 
+        // Vary maxLife between 150-180 frames (2.5-3 seconds at 60fps)
+        const maxLife = 150 + Math.random() * 30
+
         shootingStarsRef.current.push({
           mesh: star,
           material: material,
           life: 0,
-          maxLife: 32,
-          direction: new THREE.Vector3(-0.02, -0.01, 0),
+          maxLife: maxLife,
+          direction: new THREE.Vector3(-0.008, -0.004, 0),
         })
       }
 
@@ -200,13 +210,31 @@ export function StarfieldBackground() {
   // Update theme color
   useEffect(() => {
     const color = getThemeColor()
+    console.log('StarfieldBackground: Theme changed', {
+      theme,
+      color,
+      hexColor: '0x' + color.toString(16),
+    })
     const themeColor = new THREE.Color(color)
     updateParticlesColor(themeColor)
     updateShootingStarsColor(color)
   }, [theme])
 
+  // Update refs when state changes so animation loop can access current values
+  useEffect(() => {
+    motionEnabledRef.current = motionEnabled
+    console.log('StarfieldBackground: Motion state changed', { motionEnabled })
+  }, [motionEnabled])
+
   // Update visibility
   useEffect(() => {
+    starsVisibleRef.current = starsVisible
+    console.log('StarfieldBackground: Updating visibility', {
+      starsVisible,
+      particlesVisible: particlesMeshRef.current?.visible,
+      shootingStarsCount: shootingStarsRef.current.length,
+    })
+
     if (particlesMeshRef.current) {
       particlesMeshRef.current.visible = starsVisible
     }
@@ -215,6 +243,8 @@ export function StarfieldBackground() {
         star.mesh.visible = starsVisible
       }
     })
+
+    console.log('StarfieldBackground: Visibility updated to', starsVisible)
   }, [starsVisible])
 
   return (

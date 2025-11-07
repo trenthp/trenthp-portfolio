@@ -35,8 +35,7 @@ export const PROJECTS: Project[] = [
     description:
       'Strategic program to solve a high-visibility product crisis by integrating AI into our design workflow. Resolved CEO-level issues, launched major features, and cut design/dev cycle time by 50%.',
     link: '#case-study',
-    video:
-      'https://images.unsplash.com/photo-1699681336851-eda00f6e4c01?w=640&h=360&fit=crop',
+    video: '/images/projects/ai-empowered-design.png',
     id: 'project-ai-design',
     slug: 'building-ai-empowered-design-team',
     category: 'work',
@@ -46,19 +45,17 @@ export const PROJECTS: Project[] = [
     description:
       'Complete strategic overhaul of flagship B2C mobile application. Transformed a 2.3-star app into 4.7+ star brand asset, driving +35% user retention and +40% daily active users.',
     link: '#case-study',
-    video:
-      'https://images.unsplash.com/photo-1522869635100-ce9f1db0a47c?w=640&h=360&fit=crop',
+    video: '/images/projects/app-store-turnaround.png',
     id: 'project-app-turnaround',
     slug: 'app-store-turnaround',
     category: 'work',
   },
   {
-    name: 'Self-Driven Explorations in Spatial Computing & AR',
+    name: 'Explorations in Spatial Computing & AR',
     description:
       'Research and development sprint exploring spatial design foundations. Developed conceptual framework for spatial design system and functional WebXR prototype to test principles.',
     link: '#case-study',
-    video:
-      'https://images.unsplash.com/photo-1699681336851-eda00f6e4c01?w=640&h=360&fit=crop',
+    video: '/images/projects/spatial-computing-ar.png',
     id: 'project-spatial-ar',
     slug: 'spatial-computing-ar',
     category: 'work',
@@ -68,11 +65,30 @@ export const PROJECTS: Project[] = [
     description:
       'How I design teams, strategies, and products that thrive in complexity. Core principles for building empowered, high-performing teams that deliver great results.',
     link: '#case-study',
-    video:
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?w=640&h=360&fit=crop',
+    video: '/images/projects/leadership-philosophy.png',
     id: 'project-leadership',
     slug: 'leadership-philosophy',
     category: 'work',
+  },
+  {
+    name: 'Musical Exploration with AI',
+    description:
+      'Exploring the intersection of music and artificial intelligence. Producing an EP leveraging AI tools to create, experiment, and innovate in sound design and composition.',
+    link: '#case-study',
+    video: '/images/projects/0 - a notion EP.png',
+    id: 'project-musical-ai',
+    slug: 'musical-exploration-ai',
+    category: 'side',
+  },
+  {
+    name: 'Tool Building with AI',
+    description:
+      'Exploring building tools and products which might only serve my own purposes.',
+    link: '#case-study',
+    video: '/images/projects/',
+    id: 'tool-building-ai',
+    slug: 'tool-building-ai',
+    category: 'side',
   },
 ]
 
@@ -82,16 +98,32 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'Director of Product Design',
     start: '2020',
     end: 'Present',
-    link: 'https://optavia.com',
+    link: '#',
     id: 'work1',
   },
   {
-    company: 'Various Organizations',
-    title: 'Senior Product Design Leadership',
-    start: '2012',
-    end: '2020',
+    company: 'Overstock',
+    title: 'Lead UX Product Designer',
+    start: '2020',
+    end: '2018',
     link: '#',
     id: 'work2',
+  },
+  {
+    company: 'Surge',
+    title: 'Sr. UX / Product Designer',
+    start: '2014',
+    end: '2018',
+    link: '#',
+    id: 'work3',
+  },
+  {
+    company: 'Army National Guard',
+    title: 'Human Intelligence Collector',
+    start: '2010',
+    end: '2016',
+    link: '#',
+    id: 'work4',
   },
 ]
 
@@ -119,6 +151,15 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'Email',
     link: 'mailto:trentpetersen@gmail.com',
   },
+  {
+    label: 'GitHub',
+    link: 'https://github.com/trenthp',
+  },
+  {
+    label: 'Instagram',
+    link: 'https://instagram.com/trenthp',
+  },
 ]
 
 export const EMAIL = 'trentpetersen@gmail.com'
+export const LINKEDIN = 'linkedin.com/in/trenthp'

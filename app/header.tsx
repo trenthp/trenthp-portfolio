@@ -38,7 +38,7 @@ function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(nextTheme)}
-      className="inline-flex h-7 w-7 items-center justify-center rounded text-zinc-500 transition-colors duration-100 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800 sepia:text-amber-700 sepia:hover:bg-amber-100 blue:text-blue-300 blue:hover:bg-blue-900"
+      className="inline-flex h-7 w-7 items-center justify-center rounded transition-colors duration-100 hover:bg-gray-300 dark:hover:bg-gray-900 sepia:hover:bg-amber-300 blue:hover:bg-blue-700"
       aria-label={`Theme: ${currentConfig?.label}. Click to cycle to ${nextConfig?.label}`}
       title={`Theme: ${currentConfig?.label}`}
     >
@@ -85,7 +85,7 @@ function StarsControl() {
   return (
     <button
       onClick={() => setStarMode(nextMode.id as any)}
-      className="inline-flex h-7 w-7 items-center justify-center rounded text-zinc-500 transition-colors duration-100 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+      className="inline-flex h-7 w-7 items-center justify-center rounded transition-colors duration-100 hover:bg-gray-300 dark:hover:bg-gray-900 sepia:hover:bg-amber-300 blue:hover:bg-blue-700"
       aria-label={`Stars: ${currentMode?.label}. Click to cycle to ${nextMode?.label}`}
       title={`Stars: ${currentMode?.label}`}
     >
@@ -96,20 +96,27 @@ function StarsControl() {
 
 export function Header() {
   return (
-    <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <div>
-        <Link href="/" className="font-medium text-black dark:text-white">
-          Trent Holms Petersen
-        </Link>
-        <TextEffect
-          as="p"
-          preset="fade"
-          per="char"
-          className="text-zinc-600 dark:text-zinc-500"
-          delay={0.5}
-        >
-          Product Design Leader | Leading AI-empowered designers, Building Immersive, Intelligent Applications
-        </TextEffect>
+    <header className="mb-8 flex flex-col-reverse items-end gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-24">
+      <div className="flex items-start gap-4 sm:items-center">
+        <img
+          src="/images/trent_circle.png"
+          alt="Trent Holms Petersen"
+          className="h-16 w-16 rounded-full"
+        />
+        <div>
+          <Link href="/" className="font-medium header-link">
+            Trent Holms Petersen
+          </Link>
+          <TextEffect
+            as="p"
+            preset="fade"
+            per="char"
+            className="header-subtitle"
+            delay={0.5}
+          >
+            Product Design Leader | Leading AI-empowered designers, Building Immersive, Intelligent Applications
+          </TextEffect>
+        </div>
       </div>
       <div className="flex items-center gap-2 text-xs text-zinc-400">
         <StarsControl />
