@@ -79,7 +79,7 @@ export function Spotlight({
         left: spotlightLeft,
         top: spotlightTop,
         background: `radial-gradient(circle at center, ${fromColor}, ${viaColor}, ${toColor}, transparent 80%)`,
-      } as React.CSSProperties}
+      }}
     />
   )
 }
