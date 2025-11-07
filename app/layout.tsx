@@ -49,7 +49,7 @@ export default function RootLayout({
           enableSystem={true}
           attribute="class"
           storageKey="theme"
-          defaultTheme="system"
+          defaultTheme="dark"
           themes={['light', 'dark', 'sepia', 'blue']}
         >
           <BackgroundProvider>

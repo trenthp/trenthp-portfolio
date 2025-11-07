@@ -71,6 +71,16 @@ export const PROJECTS: Project[] = [
     category: 'work',
   },
   {
+    name: 'Tool Building with AI',
+    description:
+      'Building a visual mapping tool that connects user needs to interface design using JTBD and Elements of UX frameworks.',
+    link: '#case-study',
+    video: '/images/projects/layers-mapping.mp4',
+    id: 'tool-building-ai',
+    slug: 'tool-building-ai',
+    category: 'side',
+  }, 
+  {
     name: 'Musical Exploration with AI',
     description:
       'Exploring the intersection of music and artificial intelligence. Producing an EP leveraging AI tools to create, experiment, and innovate in sound design and composition.',
@@ -78,16 +88,6 @@ export const PROJECTS: Project[] = [
     video: '/images/projects/0 - a notion EP.png',
     id: 'project-musical-ai',
     slug: 'musical-exploration-ai',
-    category: 'side',
-  },
-  {
-    name: 'Tool Building with AI',
-    description:
-      'Exploring building tools and products which might only serve my own purposes.',
-    link: '#case-study',
-    video: '/images/projects/',
-    id: 'tool-building-ai',
-    slug: 'tool-building-ai',
     category: 'side',
   },
 ]
