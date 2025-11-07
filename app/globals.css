@@ -21,6 +21,7 @@
 }
 
 :root {
+  /* Syntax highlighting colors */
   --sh-class: #7aa2f7;
   --sh-sign: #89ddff;
   --sh-string: #9ece6a;
@@ -29,4 +30,64 @@
   --sh-jsxliterals: #7aa2f7;
   --sh-property: #73daca;
   --sh-entity: #e0af68;
+
+  /* Color palette */
+  --color-light: #F7F6F4;
+  --color-dark: #111111;
+  --color-blue-light: #1C6BE6;
+  --color-blue-accent: #E5EEFF;
+  --color-blue-dark: #0032D2;
+  --color-sepia: #8B6F47;
+}
+
+/* Light theme */
+.light {
+  @apply bg-[#F7F6F4];
+  color-scheme: light;
+}
+
+.light {
+  --text-primary: #111111;
+  --text-secondary: #4a4a4a;
+  --border: #e0dcd8;
+  --bg: #F7F6F4;
+}
+
+/* Dark theme */
+.dark {
+  @apply bg-[#111111];
+  color-scheme: dark;
+}
+
+.dark {
+  --text-primary: #F7F6F4;
+  --text-secondary: #b0acaa;
+  --border: #2a2a2a;
+  --bg: #111111;
+}
+
+/* Sepia theme */
+.sepia {
+  @apply bg-[#f4f1e8];
+  color-scheme: light;
+}
+
+.sepia {
+  --text-primary: #3e3e3e;
+  --text-secondary: #8b6f47;
+  --border: #d4c9bc;
+  --bg: #f4f1e8;
+}
+
+/* Blue theme */
+.blue {
+  @apply bg-[#0a1628];
+  color-scheme: dark;
+}
+
+.blue {
+  --text-primary: #E5EEFF;
+  --text-secondary: #7fa3d1;
+  --border: #1c3a6b;
+  --bg: #0a1628;
 }

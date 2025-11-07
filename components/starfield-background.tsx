@@ -18,7 +18,18 @@ export function StarfieldBackground() {
   const { motionEnabled, starsVisible } = useBackground()
 
   const getThemeColor = () => {
-    return theme === 'dark' ? 0xffffff : 0x000000
+    switch (theme) {
+      case 'dark':
+        return 0xffffff // white
+      case 'light':
+        return 0x111111 // dark gray from palette
+      case 'sepia':
+        return 0x8b6f47 // sepia brown
+      case 'blue':
+        return 0x1c6be6 // bright blue from palette
+      default:
+        return 0xffffff
+    }
   }
 
   const updateParticlesColor = (color: THREE.Color) => {
@@ -91,8 +102,8 @@ export function StarfieldBackground() {
       animationFrameRef.current = requestAnimationFrame(animate)
 
       if (motionEnabled && starsVisible) {
-        particles.rotation.y += 0.0001
-        particles.rotation.x += 0.00005
+        particles.rotation.y += 0.00005
+        particles.rotation.x += 0.000025
       }
 
       // Update shooting stars

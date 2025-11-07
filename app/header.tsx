@@ -1,7 +1,7 @@
 'use client'
 import { TextEffect } from '@/components/ui/text-effect'
 import Link from 'next/link'
-import { Play, Pause, Eye, EyeOff, MonitorIcon, MoonIcon, SunIcon } from 'lucide-react'
+import { Play, Pause, Eye, EyeOff, MoonIcon, SunIcon, Palette } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useBackground } from '@/lib/background-context'
 import { useTheme } from 'next-themes'
@@ -19,9 +19,14 @@ const THEMES_OPTIONS = [
     icon: <MoonIcon className="h-4 w-4" />,
   },
   {
-    label: 'System',
-    id: 'system',
-    icon: <MonitorIcon className="h-4 w-4" />,
+    label: 'Sepia',
+    id: 'sepia',
+    icon: <Palette className="h-4 w-4" />,
+  },
+  {
+    label: 'Blue',
+    id: 'blue',
+    icon: <Palette className="h-4 w-4" />,
   },
 ]
 
@@ -51,16 +56,16 @@ function ThemeSwitch() {
         setTheme(id as string)
       }}
     >
-      {THEMES_OPTIONS.map((theme) => {
+      {THEMES_OPTIONS.map((themeOption) => {
         return (
           <button
-            key={theme.id}
+            key={themeOption.id}
             className="inline-flex h-7 w-7 items-center justify-center text-zinc-500 transition-colors duration-100 focus-visible:outline-2 data-[checked=true]:text-zinc-950 dark:text-zinc-400 dark:data-[checked=true]:text-zinc-50"
             type="button"
-            aria-label={`Switch to ${theme.label} theme`}
-            data-id={theme.id}
+            aria-label={`Switch to ${themeOption.label} theme`}
+            data-id={themeOption.id}
           >
-            {theme.icon}
+            {themeOption.icon}
           </button>
         )
       })}
@@ -68,9 +73,27 @@ function ThemeSwitch() {
   )
 }
 
-function MotionToggle() {
+const STAR_MODES = [
+  {
+    label: 'Stars Moving',
+    id: 'moving',
+    icon: <Play className="h-4 w-4" />,
+  },
+  {
+    label: 'Stars Paused',
+    id: 'paused',
+    icon: <Pause className="h-4 w-4" />,
+  },
+  {
+    label: 'No Stars',
+    id: 'off',
+    icon: <EyeOff className="h-4 w-4" />,
+  },
+]
+
+function StarsControl() {
   const [mounted, setMounted] = useState(false)
-  const { motionEnabled, setMotionEnabled } = useBackground()
+  const { starMode, setStarMode } = useBackground()
 
   useEffect(() => {
     setMounted(true)
@@ -80,38 +103,19 @@ function MotionToggle() {
     return null
   }
 
-  return (
-    <button
-      onClick={() => setMotionEnabled(!motionEnabled)}
-      className="inline-flex h-7 w-7 items-center justify-center rounded text-zinc-500 transition-colors duration-100 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
-      aria-label={motionEnabled ? 'Pause motion' : 'Play motion'}
-      title={motionEnabled ? 'Pause motion' : 'Play motion'}
-    >
-      {motionEnabled ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-    </button>
-  )
-}
-
-function StarsToggle() {
-  const [mounted, setMounted] = useState(false)
-  const { starsVisible, setStarsVisible } = useBackground()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return null
-  }
+  const currentMode = STAR_MODES.find((m) => m.id === starMode)
+  const currentIndex = STAR_MODES.findIndex((m) => m.id === starMode)
+  const nextIndex = (currentIndex + 1) % STAR_MODES.length
+  const nextMode = STAR_MODES[nextIndex]
 
   return (
     <button
-      onClick={() => setStarsVisible(!starsVisible)}
+      onClick={() => setStarMode(nextMode.id as any)}
       className="inline-flex h-7 w-7 items-center justify-center rounded text-zinc-500 transition-colors duration-100 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
-      aria-label={starsVisible ? 'Hide stars' : 'Show stars'}
-      title={starsVisible ? 'Hide stars' : 'Show stars'}
+      aria-label={`Stars: ${currentMode?.label}. Click to cycle to ${nextMode?.label}`}
+      title={`Stars: ${currentMode?.label}`}
     >
-      {starsVisible ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+      {currentMode?.icon}
     </button>
   )
 }
@@ -134,8 +138,7 @@ export function Header() {
         </TextEffect>
       </div>
       <div className="flex items-center gap-2 text-xs text-zinc-400">
-        <MotionToggle />
-        <StarsToggle />
+        <StarsControl />
         <ThemeSwitch />
       </div>
     </header>

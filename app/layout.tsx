@@ -43,13 +43,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
+        className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950 sepia:bg-[#f4f1e8] blue:bg-[#0a1628]`}
       >
         <ThemeProvider
           enableSystem={true}
           attribute="class"
           storageKey="theme"
           defaultTheme="system"
+          themes={['light', 'dark', 'sepia', 'blue']}
         >
           <BackgroundProvider>
             <StarfieldBackground />

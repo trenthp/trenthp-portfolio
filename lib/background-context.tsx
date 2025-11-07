@@ -2,30 +2,28 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
+type StarMode = 'moving' | 'paused' | 'off'
+
 interface BackgroundContextType {
+  starMode: StarMode
+  setStarMode: (mode: StarMode) => void
+  // Legacy compatibility getters
   motionEnabled: boolean
-  setMotionEnabled: (enabled: boolean) => void
   starsVisible: boolean
-  setStarsVisible: (visible: boolean) => void
 }
 
 const BackgroundContext = createContext<BackgroundContextType | undefined>(undefined)
 
 export function BackgroundProvider({ children }: { children: React.ReactNode }) {
-  const [motionEnabled, setMotionEnabled] = useState(true)
-  const [starsVisible, setStarsVisible] = useState(true)
+  const [starMode, setStarMode] = useState<StarMode>('moving')
   const [mounted, setMounted] = useState(false)
 
   // Load from localStorage on mount
   useEffect(() => {
-    const savedMotion = localStorage.getItem('motion')
-    const savedStars = localStorage.getItem('stars')
+    const savedStarMode = localStorage.getItem('starMode')
 
-    if (savedMotion !== null) {
-      setMotionEnabled(savedMotion === 'enabled')
-    }
-    if (savedStars !== null) {
-      setStarsVisible(savedStars === 'visible')
+    if (savedStarMode !== null && ['moving', 'paused', 'off'].includes(savedStarMode)) {
+      setStarMode(savedStarMode as StarMode)
     }
     setMounted(true)
   }, [])
@@ -33,18 +31,16 @@ export function BackgroundProvider({ children }: { children: React.ReactNode }) 
   // Save to localStorage when values change
   useEffect(() => {
     if (mounted) {
-      localStorage.setItem('motion', motionEnabled ? 'enabled' : 'disabled')
+      localStorage.setItem('starMode', starMode)
     }
-  }, [motionEnabled, mounted])
+  }, [starMode, mounted])
 
-  useEffect(() => {
-    if (mounted) {
-      localStorage.setItem('stars', starsVisible ? 'visible' : 'hidden')
-    }
-  }, [starsVisible, mounted])
+  // Compute legacy values for starfield component compatibility
+  const motionEnabled = starMode === 'moving'
+  const starsVisible = starMode !== 'off'
 
   return (
-    <BackgroundContext.Provider value={{ motionEnabled, setMotionEnabled, starsVisible, setStarsVisible }}>
+    <BackgroundContext.Provider value={{ starMode, setStarMode, motionEnabled, starsVisible }}>
       {children}
     </BackgroundContext.Provider>
   )
