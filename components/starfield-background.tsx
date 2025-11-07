@@ -82,15 +82,17 @@ export function StarfieldBackground() {
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
 
+    // Use white as initial color - will be updated by theme effect
     const particlesMaterial = new THREE.PointsMaterial({
-      color: getThemeColor(),
-      size: 0.04,
+      color: 0xffffff,
+      size: 0.1,
       transparent: true,
       opacity: 0.8,
       blending: THREE.AdditiveBlending,
     })
 
     const particles = new THREE.Points(particlesGeometry, particlesMaterial)
+    particles.visible = starsVisible
     scene.add(particles)
 
     sceneRef.current = scene
