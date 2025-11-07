@@ -1,0 +1,407 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+/* Theme background and text colors */
+/* Light Theme - Default */
+body {
+  background-color: #F7F6F4;
+  color: #333333 !important; /* paragraph text */
+}
+
+body p {
+  color: #333333 !important;
+}
+
+body p strong,
+body p b,
+strong,
+b {
+  color: #333333 !important;
+}
+
+li {
+  color: #333333 !important;
+}
+
+table,
+table td,
+table th {
+  color: #333333 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #111111 !important; /* headline text */
+}
+
+/* Dark Theme */
+html.dark body {
+  background-color: #111111;
+  color: #B4B4B4 !important; /* paragraph text */
+}
+
+html.dark body p {
+  color: #B4B4B4 !important;
+}
+
+html.dark body p strong,
+html.dark body p b,
+html.dark strong,
+html.dark b {
+  color: #B4B4B4 !important;
+}
+
+html.dark li {
+  color: #B4B4B4 !important;
+}
+
+html.dark table,
+html.dark table td,
+html.dark table th {
+  color: #B4B4B4 !important;
+}
+
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
+  color: #FFFFFF !important; /* headline text */
+}
+
+/* Sepia Theme */
+html.sepia body {
+  background-color: #FBF0D9;
+  color: #735C3F !important; /* paragraph text */
+}
+
+html.sepia body p {
+  color: #735C3F !important;
+}
+
+html.sepia body p strong,
+html.sepia body p b,
+html.sepia strong,
+html.sepia b {
+  color: #735C3F !important;
+}
+
+html.sepia li {
+  color: #735C3F !important;
+}
+
+html.sepia table,
+html.sepia table td,
+html.sepia table th {
+  color: #735C3F !important;
+}
+
+html.sepia h1, html.sepia h2, html.sepia h3, html.sepia h4, html.sepia h5, html.sepia h6 {
+  color: #5F4B32 !important; /* headline text */
+}
+
+/* Blue Theme */
+html.blue body {
+  background-color: #0032D2;
+  color: #E5EEFF !important; /* paragraph text */
+}
+
+html.blue body p {
+  color: #E5EEFF !important;
+}
+
+html.blue body p strong,
+html.blue body p b,
+html.blue strong,
+html.blue b {
+  color: #E5EEFF !important;
+}
+
+html.blue li {
+  color: #E5EEFF !important;
+}
+
+html.blue table,
+html.blue table td,
+html.blue table th {
+  color: #E5EEFF !important;
+}
+
+html.blue h1, html.blue h2, html.blue h3, html.blue h4, html.blue h5, html.blue h6 {
+  color: #F7F6F4 !important; /* headline text */
+}
+
+/* Header specific styles for all themes */
+.header-link {
+  color: #111111; /* light theme headline */
+}
+
+html.dark .header-link {
+  color: #FFFFFF; /* dark theme headline */
+}
+
+html.sepia .header-link {
+  color: #5F4B32; /* sepia theme headline */
+}
+
+html.blue .header-link {
+  color: #F7F6F4; /* blue theme headline */
+}
+
+.header-subtitle {
+  color: #333333; /* light theme paragraph */
+}
+
+html.dark .header-subtitle {
+  color: #B4B4B4; /* dark theme paragraph */
+}
+
+html.sepia .header-subtitle {
+  color: #735C3F; /* sepia theme paragraph */
+}
+
+html.blue .header-subtitle {
+  color: #E5EEFF; /* blue theme paragraph */
+}
+
+/* Control button icon colors - match headline colors exactly */
+button {
+  color: #111111; /* light theme icon color */
+}
+
+html.dark button {
+  color: #FFFFFF; /* dark theme icon color */
+}
+
+html.sepia button {
+  color: #5F4B32; /* sepia theme icon color */
+}
+
+html.blue button {
+  color: #F7F6F4; /* blue theme icon color */
+}
+
+:root {
+  /* Syntax highlighting colors */
+  --sh-class: #7aa2f7;
+  --sh-sign: #89ddff;
+  --sh-string: #9ece6a;
+  --sh-keyword: #bb9af7;
+  --sh-comment: #565f89;
+  --sh-jsxliterals: #7aa2f7;
+  --sh-property: #73daca;
+  --sh-entity: #e0af68;
+
+  /* Theme Background Colors */
+  --bg-light: #F7F6F4;
+  --bg-dark: #111111;
+  --bg-sepia: #FBF0D9;
+  --bg-blue: #0032D2;
+
+  /* Theme Hover Colors */
+  --hover-light: #E8E7E0;
+  --hover-dark: #2A2A2A;
+  --hover-sepia: #EFE5C8;
+  --hover-blue: #1A47E5;
+
+  /* Color palette */
+  --color-light: #F7F6F4;
+  --color-dark: #111111;
+  --color-blue-light: #1C6BE6;
+  --color-blue-accent: #E5EEFF;
+  --color-blue-dark: #0032D2;
+  --color-sepia: #8B6F47;
+
+  /* Prose plugin overrides - light theme */
+  --tw-prose-hr: #333333;
+}
+
+html.dark {
+  /* Prose plugin overrides - dark theme */
+  --tw-prose-hr: #B4B4B4;
+}
+
+html.sepia {
+  /* Prose plugin overrides - sepia theme */
+  --tw-prose-hr: #735C3F;
+}
+
+html.blue {
+  /* Prose plugin overrides - blue theme */
+  --tw-prose-hr: #E5EEFF;
+}
+
+/* Override prose hr elements directly */
+@layer components {
+  hr {
+    border-top-color: #333333 !important;
+  }
+
+  html.dark hr {
+    border-top-color: #B4B4B4 !important;
+  }
+
+  html.sepia hr {
+    border-top-color: #735C3F !important;
+  }
+
+  html.blue hr {
+    border-top-color: #E5EEFF !important;
+  }
+
+  .prose hr {
+    border-top-color: #333333 !important;
+  }
+
+  html.dark .prose hr {
+    border-top-color: #B4B4B4 !important;
+  }
+
+  html.sepia .prose hr {
+    border-top-color: #735C3F !important;
+  }
+
+  html.blue .prose hr {
+    border-top-color: #E5EEFF !important;
+  }
+}
+
+/* Card backgrounds - match theme backgrounds */
+.card-bg {
+  background-color: var(--bg-light);
+}
+
+html.dark .card-bg {
+  background-color: var(--bg-dark);
+}
+
+html.sepia .card-bg {
+  background-color: var(--bg-sepia);
+}
+
+html.blue .card-bg {
+  background-color: var(--bg-blue);
+}
+
+/* Divider borders - custom colors */
+footer {
+  border-top-color: #333333 !important;
+}
+
+html.dark footer {
+  border-top-color: #B4B4B4 !important;
+}
+
+html.sepia footer {
+  border-top-color: #735C3F !important;
+}
+
+html.blue footer {
+  border-top-color: #E5EEFF !important;
+}
+
+footer.divider-border,
+.divider-border {
+  border-top-color: #333333 !important;
+}
+
+html.dark footer.divider-border,
+html.dark .divider-border {
+  border-top-color: #B4B4B4 !important;
+}
+
+html.sepia footer.divider-border,
+html.sepia .divider-border {
+  border-top-color: #735C3F !important;
+}
+
+html.blue footer.divider-border,
+html.blue .divider-border {
+  border-top-color: #E5EEFF !important;
+}
+
+/* Prose list items - override defaults */
+.prose li {
+  color: #333333 !important;
+}
+
+html.dark .prose li {
+  color: #B4B4B4 !important;
+}
+
+html.sepia .prose li {
+  color: #735C3F !important;
+}
+
+html.blue .prose li {
+  color: #E5EEFF !important;
+}
+
+/* Prose list markers/bullets */
+.prose li::marker {
+  color: #333333 !important;
+}
+
+html.dark .prose li::marker {
+  color: #B4B4B4 !important;
+}
+
+html.sepia .prose li::marker {
+  color: #735C3F !important;
+}
+
+html.blue .prose li::marker {
+  color: #E5EEFF !important;
+}
+
+/* Blockquote borders - override prose defaults */
+blockquote {
+  border-left-color: #333333 !important;
+}
+
+html.dark blockquote {
+  border-left-color: #B4B4B4 !important;
+}
+
+html.sepia blockquote {
+  border-left-color: #735C3F !important;
+}
+
+html.blue blockquote {
+  border-left-color: #E5EEFF !important;
+}
+
+/* Blog card border colors - match project cards */
+.blog-card {
+  border-color: var(--hover-light);
+  background-color: transparent;
+}
+
+html.dark .blog-card {
+  border-color: var(--hover-dark);
+  background-color: transparent;
+}
+
+html.sepia .blog-card {
+  border-color: var(--hover-sepia);
+  background-color: transparent;
+}
+
+html.blue .blog-card {
+  border-color: var(--hover-blue);
+  background-color: transparent;
+}
+
