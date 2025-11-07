@@ -118,7 +118,7 @@ function StarsToggle() {
 
 export function Header() {
   return (
-    <header className="mb-8 flex items-center justify-between">
+    <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
         <Link href="/" className="font-medium text-black dark:text-white">
           Trent Holms Petersen
@@ -130,7 +130,7 @@ export function Header() {
           className="text-zinc-600 dark:text-zinc-500"
           delay={0.5}
         >
-          Product Design Director
+          Product Design Leader | Leading AI-empowered designers, Building Immersive, Intelligent Applications
         </TextEffect>
       </div>
       <div className="flex items-center gap-2 text-xs text-zinc-400">

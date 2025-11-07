@@ -14,15 +14,15 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://trenthp.dev/'),
+  metadataBase: new URL('https://trenthp.com/'),
   alternates: {
     canonical: '/'
   },
   title: {
-    default: 'Trent Holms Petersen - Product Design Director',
+    default: 'Trent Holms Petersen | Product Design Leader (AI & XR)',
     template: '%s | Trent Holms Petersen'
   },
-  description:  'Senior UX Design Director specializing in data-driven product strategy, team leadership, and transformative digital experiences.',
+  description:  'Product Design Leader & &#39;Product Producer&#39; building future-ready AI and XR experiences. View case studies on app turnarounds, AI workflows, and spatial computing.',
 };
 
 const geist = Geist({

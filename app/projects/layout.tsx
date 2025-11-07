@@ -1,7 +1,7 @@
 'use client'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
 
-export default function LayoutBlogPost({
+export default function LayoutProjectPage({
   children,
 }: {
   children: React.ReactNode

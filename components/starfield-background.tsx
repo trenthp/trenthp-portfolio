@@ -126,9 +126,9 @@ export function StarfieldBackground() {
       // Create new shooting star occasionally
       if (motionEnabled && starsVisible && Math.random() < 0.015) {
         const startPos = new THREE.Vector3(
-          (Math.random() - 0.5) * 80,
-          (Math.random() - 0.5) * 30 + 15,
-          (Math.random() - 0.5) * 80
+          (Math.random() - 0.5) * 30,
+          (Math.random() - 0.5) * 15 + 10,
+          (Math.random() - 0.5) * 30
         )
         const endPos = startPos.clone()
         endPos.x -= 2
@@ -148,8 +148,8 @@ export function StarfieldBackground() {
           mesh: star,
           material: material,
           life: 0,
-          maxLife: 3.5,
-          direction: new THREE.Vector3(-1.2, -0.8, 0),
+          maxLife: 32,
+          direction: new THREE.Vector3(-0.02, -0.01, 0),
         })
       }
 

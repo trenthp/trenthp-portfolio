@@ -4,6 +4,8 @@ type Project = {
   link: string
   video: string
   id: string
+  slug: string
+  category: 'work' | 'side'
 }
 
 type WorkExperience = {
@@ -29,29 +31,48 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'OPTAVIA Coach Experience',
+    name: 'Building an AI-Empowered Design Team',
     description:
-      'Transformed coach mobile app through user-centered redesign, achieving industry-leading 4.9 rating. Led end-to-end product strategy, user research, and UI execution.',
-    link: 'https://optavia.com',
-    video:
-      'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=640&h=360&fit=crop',
-    id: 'project1',
-  },
-  {
-    name: 'Client App Redesign',
-    description: 'Led comprehensive product transformation increasing app rating from 2.3 to 4.7. Established design systems, conducted user research, and drove cross-functional collaboration.',
-    link: '#case-study',
-    video:
-      'https://images.unsplash.com/photo-1522869635100-ce9f1db0a47c?w=640&h=360&fit=crop',
-    id: 'project2',
-  },
-  {
-    name: 'Emerging Technology Integration',
-    description: 'Pioneered adoption of AI-powered features and conversational UI patterns. Created compelling prototypes and northstar visions for next-generation product experiences.',
+      'Strategic program to solve a high-visibility product crisis by integrating AI into our design workflow. Resolved CEO-level issues, launched major features, and cut design/dev cycle time by 50%.',
     link: '#case-study',
     video:
       'https://images.unsplash.com/photo-1699681336851-eda00f6e4c01?w=640&h=360&fit=crop',
-    id: 'project3',
+    id: 'project-ai-design',
+    slug: 'building-ai-empowered-design-team',
+    category: 'work',
+  },
+  {
+    name: '2.3 → 4.7+ App Store Turnaround',
+    description:
+      'Complete strategic overhaul of flagship B2C mobile application. Transformed a 2.3-star app into 4.7+ star brand asset, driving +35% user retention and +40% daily active users.',
+    link: '#case-study',
+    video:
+      'https://images.unsplash.com/photo-1522869635100-ce9f1db0a47c?w=640&h=360&fit=crop',
+    id: 'project-app-turnaround',
+    slug: 'app-store-turnaround',
+    category: 'work',
+  },
+  {
+    name: 'Self-Driven Explorations in Spatial Computing & AR',
+    description:
+      'Research and development sprint exploring spatial design foundations. Developed conceptual framework for spatial design system and functional WebXR prototype to test principles.',
+    link: '#case-study',
+    video:
+      'https://images.unsplash.com/photo-1699681336851-eda00f6e4c01?w=640&h=360&fit=crop',
+    id: 'project-spatial-ar',
+    slug: 'spatial-computing-ar',
+    category: 'work',
+  },
+  {
+    name: 'My Leadership Philosophy',
+    description:
+      'How I design teams, strategies, and products that thrive in complexity. Core principles for building empowered, high-performing teams that deliver great results.',
+    link: '#case-study',
+    video:
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?w=640&h=360&fit=crop',
+    id: 'project-leadership',
+    slug: 'leadership-philosophy',
+    category: 'work',
   },
 ]
 

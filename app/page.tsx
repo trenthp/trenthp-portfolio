@@ -45,47 +45,13 @@ type ProjectVideoProps = {
 
 function ProjectVideo({ src }: ProjectVideoProps) {
   return (
-    <MorphingDialog
-      transition={{
-        type: 'spring',
-        bounce: 0,
-        duration: 0.3,
-      }}
-    >
-      <MorphingDialogTrigger>
-        <video
-          src={src}
-          autoPlay
-          loop
-          muted
-          className="aspect-video w-full cursor-zoom-in rounded-xl"
-        />
-      </MorphingDialogTrigger>
-      <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-          <video
-            src={src}
-            autoPlay
-            loop
-            muted
-            className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
-          />
-        </MorphingDialogContent>
-        <MorphingDialogClose
-          className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-          variants={{
-            initial: { opacity: 0 },
-            animate: {
-              opacity: 1,
-              transition: { delay: 0.3, duration: 0.1 },
-            },
-            exit: { opacity: 0, transition: { duration: 0 } },
-          }}
-        >
-          <XIcon className="h-5 w-5 text-zinc-500" />
-        </MorphingDialogClose>
-      </MorphingDialogContainer>
-    </MorphingDialog>
+    <video
+      src={src}
+      autoPlay
+      loop
+      muted
+      className="aspect-video w-full rounded-xl"
+    />
   )
 }
 
@@ -137,7 +103,7 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Product Design Leader with 12+ years shaping transformative, customer-centric digital ecosystems across B2B and B2C SaaS. Proven ability to build and mentor high-performing design teams, aligning cross-functional efforts to translate complex business ambiguity into actionable strategies and clear design visions. Track record of driving significant user growth by elevating product experiences.
+            Product Design Leader with 12+ years of experience building and mentoring teams to deliver complex B2C/B2B digital products. Proven record of increasing user engagement, demonstrated by raising a flagship app's rating from 2.3 to 4.7+. Skilled in translating business ambiguity and emerging technologies (AI, XR) into clear, actionable product visions. Seeking to apply expertise in product strategy and human-centered design to build future immersive and intelligent applications.
           </p>
         </div>
       </motion.section>
@@ -146,20 +112,35 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Design Philosophy</h3>
-        <div className="grid gap-4 sm:grid-cols-3">
-          <div className="rounded-lg bg-zinc-50 p-4 dark:bg-zinc-900">
-            <h4 className="font-medium text-zinc-900 dark:text-zinc-50">Product</h4>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">User-centered solutions backed by data, evidence, and reasoning.</p>
-          </div>
-          <div className="rounded-lg bg-zinc-50 p-4 dark:bg-zinc-900">
-            <h4 className="font-medium text-zinc-900 dark:text-zinc-50">People</h4>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Empowering teams to excel through trust-based relationships.</p>
-          </div>
-          <div className="rounded-lg bg-zinc-50 p-4 dark:bg-zinc-900">
-            <h4 className="font-medium text-zinc-900 dark:text-zinc-50">Progress</h4>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Continuous improvement through iteration and meaningful value.</p>
-          </div>
+        <h3 className="mb-5 text-lg font-medium">Work</h3>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {PROJECTS.filter((p) => p.category === 'work').map((project) => (
+            <Link
+              key={project.name}
+              href={`/projects/${project.slug}`}
+              className="group relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+            >
+              <Spotlight
+                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                size={64}
+              />
+              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
+                <div className="space-y-4">
+                  <div className="relative rounded-lg overflow-hidden">
+                    <ProjectVideo src={project.video} />
+                  </div>
+                  <div>
+                    <h4 className="font-base font-[450] text-zinc-900 dark:text-zinc-50">
+                      {project.name}
+                    </h4>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                      {project.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </motion.section>
 
@@ -167,27 +148,34 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
+        <h3 className="mb-5 text-lg font-medium">Side Projects</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {PROJECTS.map((project) => (
-            <div key={project.name} className="space-y-2">
-              <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                <ProjectVideo src={project.video} />
+          {PROJECTS.filter((p) => p.category === 'side').map((project) => (
+            <Link
+              key={project.name}
+              href={`/projects/${project.slug}`}
+              className="group relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+            >
+              <Spotlight
+                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                size={64}
+              />
+              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
+                <div className="space-y-4">
+                  <div className="relative rounded-lg overflow-hidden">
+                    <ProjectVideo src={project.video} />
+                  </div>
+                  <div>
+                    <h4 className="font-base font-[450] text-zinc-900 dark:text-zinc-50">
+                      {project.name}
+                    </h4>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                      {project.description}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="px-1">
-                <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-                  href={project.link}
-                  target="_blank"
-                >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
-                </a>
-                <p className="text-base text-zinc-600 dark:text-zinc-400">
-                  {project.description}
-                </p>
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
       </motion.section>
@@ -307,6 +295,27 @@ export default function Personal() {
               <li>• Prototyping Tools</li>
               <li>• Analytics Platforms</li>
             </ul>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">Design Philosophy</h3>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div className="rounded-lg bg-zinc-50 p-4 dark:bg-zinc-900">
+            <h4 className="font-medium text-zinc-900 dark:text-zinc-50">Product</h4>
+            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">User-centered solutions backed by data, evidence, and reasoning.</p>
+          </div>
+          <div className="rounded-lg bg-zinc-50 p-4 dark:bg-zinc-900">
+            <h4 className="font-medium text-zinc-900 dark:text-zinc-50">People</h4>
+            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Empowering teams to excel through trust-based relationships.</p>
+          </div>
+          <div className="rounded-lg bg-zinc-50 p-4 dark:bg-zinc-900">
+            <h4 className="font-medium text-zinc-900 dark:text-zinc-50">Progress</h4>
+            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Continuous improvement through iteration and meaningful value.</p>
           </div>
         </div>
       </motion.section>
