@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTheme } from 'next-themes'
 import * as THREE from 'three'
 import { useBackground } from '@/lib/background-context'
@@ -16,6 +16,7 @@ export function StarfieldBackground() {
   const motionEnabledRef = useRef(true)
   const starsVisibleRef = useRef(true)
   const lastShootingStarSpawnRef = useRef(0)
+  const [mounted, setMounted] = useState(false)
 
   const { theme } = useTheme()
   const { motionEnabled, starsVisible } = useBackground()
@@ -49,9 +50,14 @@ export function StarfieldBackground() {
       }
     })
   }
+  // Set mounted state on client
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
 
   useEffect(() => {
-    if (!containerRef.current) return
+    if (!mounted || !containerRef.current) return
 
     // Initialize scene
     const scene = new THREE.Scene()
@@ -205,7 +211,7 @@ export function StarfieldBackground() {
       particlesGeometry.dispose()
       particlesMaterial.dispose()
     }
-  }, [])
+  }, [mounted])
 
   // Update theme color
   useEffect(() => {
