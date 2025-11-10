@@ -159,6 +159,10 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'Instagram',
     link: 'https://instagram.com/trenthp',
   },
+  {
+    label: 'Resume',
+    link: 'https://drive.google.com/file/d/1hvOF73viXociM_Z52LZsPC6vBYv1t8ga/view?usp=sharing',
+  },
 ]
 
 export const EMAIL = 'trentpetersen@gmail.com'

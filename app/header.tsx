@@ -98,11 +98,13 @@ export function Header() {
   return (
     <header className="mb-8 flex flex-col-reverse items-end gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-24">
       <div className="flex items-start gap-4 sm:items-center">
-        <img
-          src="/images/trent_circle.png"
-          alt="Trent Holms Petersen"
-          className="h-16 w-16 rounded-full"
-        />
+        <Link href="/" className="h-16 w-16 flex-shrink-0">
+          <img
+            src="/images/trent_circle.png"
+            alt="Trent Holms Petersen"
+            className="h-16 w-16 rounded-full"
+          />
+        </Link>
         <div>
           <Link href="/" className="font-medium header-link">
             Trent Holms Petersen

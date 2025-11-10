@@ -5,6 +5,22 @@ import { highlight } from 'sugar-high'
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
+    a: ({ href, children, ...props }: ComponentPropsWithoutRef<'a'>) => {
+      // Check if link is external (starts with http://, https://, or mailto:)
+      const isExternal = href?.startsWith('http://') || href?.startsWith('https://')
+      const isMailto = href?.startsWith('mailto:')
+
+      return (
+        <a
+          href={href}
+          target={isExternal && !isMailto ? '_blank' : undefined}
+          rel={isExternal && !isMailto ? 'noopener noreferrer' : undefined}
+          {...props}
+        >
+          {children}
+        </a>
+      )
+    },
     Cover: ({
       src,
       alt,

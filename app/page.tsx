@@ -84,10 +84,16 @@ function MagneticSocialLink({
   children: React.ReactNode
   link: string
 }) {
+  // Check if link is external (starts with http://, https://, or mailto:)
+  const isExternal = link.startsWith('http://') || link.startsWith('https://') || link.startsWith('mailto:')
+  const isMailto = link.startsWith('mailto:')
+
   return (
     <Magnetic springOptions={{ bounce: 0 }} intensity={0.3}>
       <a
         href={link}
+        target={isExternal && !isMailto ? '_blank' : undefined}
+        rel={isExternal && !isMailto ? 'noopener noreferrer' : undefined}
         className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-gray-100 px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:bg-gray-900 hover:text-white dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 sepia:bg-amber-200 sepia:text-amber-900 sepia:hover:bg-amber-900 sepia:hover:text-amber-100 blue:bg-blue-300 blue:text-blue-50 blue:hover:bg-blue-800 blue:hover:text-blue-100"
       >
         {children}
@@ -253,7 +259,7 @@ export default function Personal() {
         <br/>
         <p className="mb-5">
           View full work history at{' '}
-          <a className="underline" href={`${LINKEDIN}`}>
+          <a className="underline" href={`https://${LINKEDIN}`} target="_blank" rel="noopener noreferrer">
             {LINKEDIN}
           </a>
         </p>
