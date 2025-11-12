@@ -145,7 +145,7 @@ export default function Personal() {
           </p>
         </div>
         <br/>
-        <div className="flex items-center justify-start space-x-3">
+        <div className="flex flex-wrap items-center justify-start gap-2 sm:space-x-3">
           {SOCIAL_LINKS.map((link) => (
             <MagneticSocialLink key={link.label} link={link.link}>
               {link.label}
@@ -277,7 +277,7 @@ export default function Personal() {
             {EMAIL}
           </a>
         </p>
-        <div className="flex items-center justify-start space-x-3">
+        <div className="flex flex-wrap items-center justify-start gap-2 sm:space-x-3">
           {SOCIAL_LINKS.map((link) => (
             <MagneticSocialLink key={link.label} link={link.link}>
               {link.label}
