@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     template: '%s | Trent Holms Petersen'
   },
   description:  'Product Design Leader & &#39;Product Producer&#39; building future-ready AI and XR experiences. View case studies on app turnarounds, AI workflows, and spatial computing.',
+  icons: {
+    icon: '/images/favicon.svg',
+  }
 };
 
 const geist = Geist({
