@@ -2,16 +2,16 @@
 import { TextLoop } from '@/components/ui/text-loop'
 
 const QUOTES = [
-  '"All generalizations are false, including this one." - Mark Twain',
-  '"If I had four hours to chop down a tree I\'d spend three sharpening my axe." - attributed to Lincoln',
-  '"Our life is what our thoughts make it." - Marcus Aurelius',
-  '"Supposing is good, but finding out is better." - Mark Twain',
+  '"All generalizations are false, including this one." — Mark Twain',
+  '"If I had four hours to chop down a tree I\'d spend three sharpening my axe." — attributed to Lincoln',
+  '"Our life is what our thoughts make it." — Marcus Aurelius',
+  '"Supposing is good, but finding out is better." — Mark Twain',
   '"Cogito, ergo sum" — René Descartes',
-  'A smooth sea never made a skilled sailor',
-  'More is lost with indecision than wrong decisions',
+  '"A smooth sea never made a skilled sailor"',
+  '"More is lost with indecision than wrong decisions"',
 ]
 
-const COPYRIGHT = '© 2025 Trent Holms Petersen.'
+const COPYRIGHT = '© 2025 Trent Holms Petersen'
 
 // Create alternating pattern: copyright, quote, copyright, quote, etc.
 const FOOTER_ITEMS = QUOTES.flatMap((quote) => [COPYRIGHT, quote])
