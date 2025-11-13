@@ -1,7 +1,7 @@
 'use client'
 import { TextEffect } from '@/components/ui/text-effect'
 import Link from 'next/link'
-import { Play, Pause, Eye, EyeOff, MoonIcon, SunIcon, Palette } from 'lucide-react'
+import { Pause, Eye, EyeOff, MoonIcon, SunIcon, Palette } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useBackground } from '@/lib/background-context'
 import { useTheme } from 'next-themes'
@@ -9,10 +9,10 @@ import { useTheme } from 'next-themes'
 const THEME_ORDER = ['dark', 'light', 'sepia', 'blue'] as const
 
 const THEME_CONFIG = {
-  dark: { label: 'Dark', icon: <MoonIcon className="h-4 w-4" /> },
-  light: { label: 'Light', icon: <SunIcon className="h-4 w-4" /> },
+  dark: { label: 'Dark', icon: <SunIcon className="h-4 w-4" /> },
+  light: { label: 'Light', icon: <Palette className="h-4 w-4" /> },
   sepia: { label: 'Sepia', icon: <Palette className="h-4 w-4" /> },
-  blue: { label: 'Blue', icon: <Palette className="h-4 w-4" /> },
+  blue: { label: 'Blue', icon: <MoonIcon className="h-4 w-4" /> },
 }
 
 function ThemeToggle() {
@@ -51,17 +51,17 @@ const STAR_MODES = [
   {
     label: 'Stars Moving',
     id: 'moving',
-    icon: <Play className="h-4 w-4" />,
+    icon: <Pause className="h-4 w-4" />,
   },
   {
     label: 'Stars Paused',
     id: 'paused',
-    icon: <Pause className="h-4 w-4" />,
+    icon: <EyeOff className="h-4 w-4" />,
   },
   {
     label: 'No Stars',
     id: 'off',
-    icon: <EyeOff className="h-4 w-4" />,
+    icon: <Eye className="h-4 w-4" />,
   },
 ]
 

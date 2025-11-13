@@ -23,7 +23,7 @@ export function Footer() {
         <div className="w-full max-w-2xl px-4">
           <TextLoop
             className="text-xs text-center block whitespace-normal"
-            interval={4}
+            interval={3}
           >
             {FOOTER_ITEMS.map((item, index) => (
               <span key={index} className="block">{item}</span>
