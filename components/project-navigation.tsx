@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { PROJECTS } from '@/app/data'
-import { ChevronRight, Home, ArrowUp } from 'lucide-react'
+import { Home, ArrowUp, ArrowLeft, ArrowRight } from 'lucide-react'
 
 export function ProjectNavigation() {
   const pathname = usePathname()
@@ -32,36 +32,39 @@ export function ProjectNavigation() {
   return (
     <div className="mt-24 border-t border-gray-200 pt-12 dark:border-zinc-800 sepia:border-amber-200 blue:border-blue-900">
       {/* Return Home and Top Navigation */}
-      <div className="mb-12 flex items-center justify-between">
+      <div className="nav-top-section mb-12 flex items-center justify-between gap-4">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 sepia:text-amber-700 sepia:hover:text-amber-900 blue:text-blue-300 blue:hover:text-blue-100"
+          className="no-underline nav-link inline-flex items-center gap-2 rounded px-3 py-2 text-sm font-medium transition-colors duration-100 text-zinc-900 hover:bg-[#E8E7E0] hover:text-zinc-900 dark:text-zinc-100 dark:hover:bg-[#2A2A2A] dark:hover:text-zinc-100 sepia:text-amber-900 sepia:hover:bg-[#6B5344] sepia:hover:text-[#FBF0D9] blue:text-blue-100 blue:hover:bg-[#1A47E5] blue:hover:text-[#F7F6F4]"
         >
-          <Home className="h-4 w-4" />
+          <Home className="h-4 w-4 text-zinc-900 dark:text-zinc-100 sepia:text-amber-900 blue:text-blue-100" />
           Return Home
         </Link>
 
         <button
           onClick={handleScrollToTop}
-          className="inline-flex items-center gap-2 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 sepia:text-amber-700 sepia:hover:text-amber-900 blue:text-blue-300 blue:hover:text-blue-100"
+          className="nav-link inline-flex items-center gap-2 rounded px-3 py-2 text-sm font-medium transition-colors duration-100 text-zinc-900 hover:bg-[#E8E7E0] hover:text-zinc-900 dark:text-zinc-100 dark:hover:bg-[#2A2A2A] dark:hover:text-zinc-100 sepia:text-amber-900 sepia:hover:bg-[#6B5344] sepia:hover:text-[#FBF0D9] blue:text-blue-100 blue:hover:bg-[#1A47E5] blue:hover:text-[#F7F6F4]"
         >
           Return to Top
-          <ArrowUp className="h-4 w-4" />
+          <ArrowUp className="h-4 w-4 text-zinc-900 dark:text-zinc-100 sepia:text-amber-900 blue:text-blue-100" />
         </button>
       </div>
 
       {/* Next/Previous Projects */}
-      <div className="flex gap-4 md:gap-12">
+      <div className="nav-projects-section flex gap-4 md:gap-12">
         {/* Previous Project */}
         <Link
           href={`/projects/${previousProject.slug}`}
           className="flex-1 group no-underline"
         >
-          <div className="flex flex-col gap-1">
-            <span className="text-xs font-medium text-zinc-500 dark:text-zinc-500 sepia:text-amber-600 blue:text-blue-400">
-              Previous Project
-            </span>
-            <h3 className="mt-0 text-sm font-medium text-zinc-900 transition-colors group-hover:text-zinc-600 dark:text-zinc-100 dark:group-hover:text-zinc-400 sepia:text-amber-900 sepia:group-hover:text-amber-700 blue:text-blue-100 blue:group-hover:text-blue-300">
+          <div className="nav-project-card flex flex-col gap-1 rounded px-3 py-2 transition-colors duration-100 group-hover:bg-[#E8E7E0] dark:group-hover:bg-[#2A2A2A] sepia:group-hover:bg-[#6B5344] blue:group-hover:bg-[#1A47E5]">
+            <div className="flex items-center gap-2">
+              <ArrowLeft className="h-3 w-3 flex-shrink-0 text-zinc-900 dark:text-zinc-100 sepia:text-amber-900 blue:text-blue-100" />
+              <span className="nav-label text-xs font-medium text-zinc-900 dark:text-zinc-100 sepia:text-amber-900 blue:text-blue-100">
+                Previous Project
+              </span>
+            </div>
+            <h3 className="nav-title mt-0 text-sm font-medium text-zinc-900 transition-colors group-hover:text-zinc-900 dark:text-zinc-100 dark:group-hover:text-zinc-100 sepia:text-amber-900 sepia:group-hover:text-[#FBF0D9] blue:text-blue-100 blue:group-hover:text-[#F7F6F4]">
               {previousProject.name}
             </h3>
           </div>
@@ -72,11 +75,14 @@ export function ProjectNavigation() {
           href={`/projects/${nextProject.slug}`}
           className="flex-1 group flex justify-end no-underline"
         >
-          <div className="flex flex-col gap-1 text-right">
-            <span className="text-xs font-medium text-zinc-500 dark:text-zinc-500 sepia:text-amber-600 blue:text-blue-400">
-              Next Project
-            </span>
-            <h3 className="mt-0 text-sm font-medium text-zinc-900 transition-colors group-hover:text-zinc-600 dark:text-zinc-100 dark:group-hover:text-zinc-400 sepia:text-amber-900 sepia:group-hover:text-amber-700 blue:text-blue-100 blue:group-hover:text-blue-300">
+          <div className="nav-project-card flex flex-col gap-1 text-right rounded px-3 py-2 transition-colors duration-100 group-hover:bg-[#E8E7E0] dark:group-hover:bg-[#2A2A2A] sepia:group-hover:bg-[#6B5344] blue:group-hover:bg-[#1A47E5]">
+            <div className="flex items-center justify-end gap-2">
+              <span className="nav-label text-xs font-medium text-zinc-900 dark:text-zinc-100 sepia:text-amber-900 blue:text-blue-100">
+                Next Project
+              </span>
+              <ArrowRight className="h-3 w-3 flex-shrink-0 text-zinc-900 dark:text-zinc-100 sepia:text-amber-900 blue:text-blue-100" />
+            </div>
+            <h3 className="nav-title mt-0 text-sm font-medium text-zinc-900 transition-colors group-hover:text-zinc-900 dark:text-zinc-100 dark:group-hover:text-zinc-100 sepia:text-amber-900 sepia:group-hover:text-[#FBF0D9] blue:text-blue-100 blue:group-hover:text-[#F7F6F4]">
               {nextProject.name}
             </h3>
           </div>

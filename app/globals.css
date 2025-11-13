@@ -237,6 +237,7 @@ html.dark {
 html.sepia {
   /* Prose plugin overrides - sepia theme */
   --tw-prose-hr: #735C3F;
+  --tw-sepia: sepia(0%) !important;
 }
 
 html.blue {
@@ -367,6 +368,154 @@ html.blue .prose li::marker {
   color: #E5EEFF !important;
 }
 
+/* Header buttons (star and theme controls) - resting state */
+button {
+  color: #111111 !important; /* light theme text */
+}
+
+html.dark button {
+  color: #FFFFFF !important; /* dark theme text */
+}
+
+html.sepia button {
+  color: #3E2723 !important; /* sepia theme text */
+}
+
+html.blue button {
+  color: #F7F6F4 !important; /* blue theme text */
+}
+
+/* Header buttons - hover backgrounds */
+button:hover {
+  background-color: #E8E7E0 !important; /* light theme hover bg */
+  color: #111111 !important;
+}
+
+html.dark button:hover {
+  background-color: #2A2A2A !important; /* dark theme hover bg */
+  color: #FFFFFF !important;
+}
+
+html.sepia button:hover {
+  background-color: #EFD9B8 !important; /* sepia theme hover bg */
+  color: #3E2723 !important;
+}
+
+html.blue button:hover {
+  background-color: #1A47E5 !important; /* blue theme hover bg */
+  color: #F7F6F4 !important;
+}
+
+/* Social link tags - resting state backgrounds and text */
+a.rounded-full {
+  background-color: #e5e7eb !important; /* light theme resting bg */
+  color: #111111 !important; /* light theme text */
+}
+
+html.dark a.rounded-full {
+  background-color: #374151 !important; /* dark theme resting bg */
+  color: #FFFFFF !important; /* dark theme text */
+}
+
+html.sepia a.rounded-full {
+  background-color: #EFD9B8 !important; /* sepia theme resting bg */
+  color: #3E2723 !important; /* sepia theme text */
+}
+
+html.blue a.rounded-full {
+  background-color: #1C6BE6 !important; /* blue theme resting bg */
+  color: #f1f6ff !important; /* blue theme text */
+}
+
+/* Social link tags - hover states */
+a.rounded-full:hover {
+  background-color: #1a1a1a !important; /* light theme hover bg */
+  color: white !important; /* light theme hover text */
+}
+
+html.dark a.rounded-full:hover {
+  background-color: #4a4a4a !important; /* dark theme hover bg */
+  color: #FFFFFF !important; /* dark theme hover text */
+}
+
+html.sepia a.rounded-full:hover {
+  background-color: #6B5344 !important; /* sepia theme hover bg */
+  color: #FBF0D9 !important; /* sepia theme hover text */
+}
+
+html.blue a.rounded-full:hover {
+  background-color: #1e3a8a !important; /* blue theme hover bg */
+  color: #dbeafe !important; /* blue theme hover text */
+}
+
+/* Project page links - darker colors for better contrast */
+.prose a {
+  color: #1C6BE6 !important; /* light theme link color */
+}
+
+html.dark .prose a {
+  color: #93c5fd !important; /* dark theme link color */
+}
+
+html.sepia .prose a {
+  color: #6B4423 !important; /* sepia theme link color */
+}
+
+html.blue .prose a {
+  color: #93c5fd !important; /* blue theme link color */
+}
+
+/* Override prose link colors for navigation links */
+a.nav-link {
+  color: #111111 !important;
+}
+
+html.dark a.nav-link {
+  color: #FFFFFF !important;
+}
+
+html.sepia a.nav-link {
+  color: #3E2723 !important;
+}
+
+html.blue a.nav-link {
+  color: #F7F6F4 !important;
+}
+
+/* Navigation link icons */
+.nav-link svg {
+  color: #111111 !important;
+}
+
+html.dark .nav-link svg {
+  color: #FFFFFF !important;
+}
+
+html.sepia .nav-link svg {
+  color: #3E2723 !important;
+}
+
+html.blue .nav-link svg {
+  color: #F7F6F4 !important;
+}
+
+/* Navigation project card icons */
+.nav-project-card svg {
+  color: #111111 !important;
+}
+
+html.dark .nav-project-card svg {
+  color: #FFFFFF !important;
+}
+
+html.sepia .nav-project-card svg {
+  color: #3E2723 !important;
+}
+
+html.blue .nav-project-card svg {
+  color: #F7F6F4 !important;
+}
+
 /* Blockquote borders - override prose defaults */
 blockquote {
   border-left-color: #333333 !important;
@@ -403,5 +552,81 @@ html.sepia .blog-card {
 html.blue .blog-card {
   border-color: var(--hover-blue);
   background-color: transparent;
+}
+
+/* Reset sepia filter on images to show full color */
+img {
+  filter: none !important;
+}
+
+/* Project navigation styling */
+.nav-link,
+.nav-label,
+.nav-title {
+  color: #111111 !important;
+}
+
+html.dark .nav-link,
+html.dark .nav-label,
+html.dark .nav-title {
+  color: #FFFFFF !important;
+}
+
+html.sepia .nav-link,
+html.sepia .nav-label,
+html.sepia .nav-title {
+  color: #3E2723 !important;
+}
+
+html.blue .nav-link,
+html.blue .nav-label,
+html.blue .nav-title {
+  color: #F7F6F4 !important;
+}
+
+/* Project navigation hover backgrounds and text colors */
+.nav-link:hover,
+a.nav-link:hover {
+  background-color: #E8E7E0 !important;
+  color: #111111 !important;
+}
+
+html.dark .nav-link:hover,
+html.dark a.nav-link:hover {
+  background-color: #2A2A2A !important;
+  color: #FFFFFF !important;
+}
+
+html.sepia .nav-link:hover,
+html.sepia a.nav-link:hover {
+  background-color: #EFD9B8 !important;
+  color: #3E2723 !important;
+}
+
+html.blue .nav-link:hover,
+html.blue a.nav-link:hover {
+  background-color: #1A47E5 !important;
+  color: #F7F6F4 !important;
+}
+
+.nav-project-card:hover {
+  background-color: #E8E7E0 !important;
+}
+
+html.dark .nav-project-card:hover {
+  background-color: #2A2A2A !important;
+}
+
+html.sepia .nav-project-card:hover {
+  background-color: #EFD9B8 !important;
+}
+
+html.sepia .nav-project-card:hover .nav-label,
+html.sepia .nav-project-card:hover .nav-title {
+  color: #3E2723 !important;
+}
+
+html.blue .nav-project-card:hover {
+  background-color: #1A47E5 !important;
 }
 

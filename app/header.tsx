@@ -38,7 +38,7 @@ function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(nextTheme)}
-      className="inline-flex h-7 w-7 items-center justify-center rounded transition-colors duration-100 hover:bg-gray-300 dark:hover:bg-gray-900 sepia:hover:bg-amber-300 blue:hover:bg-blue-700"
+      className="inline-flex h-7 w-7 items-center justify-center rounded transition-colors duration-100 text-zinc-900 hover:bg-gray-300 dark:text-zinc-100 dark:hover:bg-gray-900 sepia:text-amber-900 sepia:hover:bg-amber-300 blue:text-blue-100 blue:hover:bg-blue-700"
       aria-label={`Theme: ${currentConfig?.label}. Click to cycle to ${nextConfig?.label}`}
       title={`Theme: ${currentConfig?.label}`}
     >
@@ -85,7 +85,7 @@ function StarsControl() {
   return (
     <button
       onClick={() => setStarMode(nextMode.id as any)}
-      className="inline-flex h-7 w-7 items-center justify-center rounded transition-colors duration-100 hover:bg-gray-300 dark:hover:bg-gray-900 sepia:hover:bg-amber-300 blue:hover:bg-blue-700"
+      className="inline-flex h-7 w-7 items-center justify-center rounded transition-colors duration-100 text-zinc-900 hover:bg-gray-300 dark:text-zinc-100 dark:hover:bg-gray-900 sepia:text-amber-900 sepia:hover:bg-amber-300 blue:text-blue-100 blue:hover:bg-blue-700"
       aria-label={`Stars: ${currentMode?.label}. Click to cycle to ${nextMode?.label}`}
       title={`Stars: ${currentMode?.label}`}
     >
