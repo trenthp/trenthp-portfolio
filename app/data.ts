@@ -51,16 +51,6 @@ export const PROJECTS: Project[] = [
     category: 'work',
   },
   {
-    name: 'Explorations in Spatial Computing & AR',
-    description:
-      'Research and development sprint exploring spatial design foundations. Developed conceptual framework for spatial design system and functional WebXR prototype to test principles.',
-    link: '#case-study',
-    video: '/images/projects/spatial-computing-ar.png',
-    id: 'project-spatial-ar',
-    slug: 'spatial-computing-ar',
-    category: 'work',
-  },
-  {
     name: 'My Leadership Philosophy',
     description:
       'How I design teams, strategies, and products that thrive in complexity. Core principles for building empowered, high-performing teams that deliver great results.',
@@ -68,6 +58,16 @@ export const PROJECTS: Project[] = [
     video: '/images/projects/leadership-philosophy.png',
     id: 'project-leadership',
     slug: 'leadership-philosophy',
+    category: 'work',
+  },
+  {
+    name: 'Explorations in Spatial Computing & AR + AI',
+    description:
+      'Research and development sprint exploring spatial design foundations. Developed conceptual framework for spatial design system and functional WebXR prototype to test principles with AI workflows.',
+    link: '#case-study',
+    video: '/images/projects/spatial-computing-ar.png',
+    id: 'project-spatial-ar',
+    slug: 'spatial-computing-ar',
     category: 'work',
   },
   {
