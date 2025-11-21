@@ -95,7 +95,7 @@ export const PROJECTS: Project[] = [
     description:
       'Exploring the intersection of music and artificial intelligence. Producing an EP leveraging AI tools to create, experiment, and innovate in sound design and composition.',
     link: '#case-study',
-    video: '/images/projects/0 - a notion EP.png',
+    video: '/images/projects/a notion EP.png',
     id: 'project-musical-ai',
     slug: 'musical-exploration-ai',
     category: 'side',
