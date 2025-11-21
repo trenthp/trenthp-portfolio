@@ -87,7 +87,7 @@ export class ThreeScene {
     window.addEventListener('mousemove', handleMouseMove)
 
     // Store for cleanup
-    ;(this as any)._handleMouseMove = handleMouseMove
+    this._handleMouseMove = handleMouseMove
   }
 
   animate(): void {
@@ -102,20 +102,31 @@ export class ThreeScene {
   }
 
   dispose(): void {
-    window.removeEventListener('mousemove', (this as any)._handleMouseMove)
+    if (this._handleMouseMove) {
+      window.removeEventListener('mousemove', this._handleMouseMove)
+    }
     this.renderer.dispose()
   }
+}
+
+type HeroShootingStar = {
+  mesh: THREE.Line
+  material: THREE.LineBasicMaterial
+  life: number
+  maxLife: number
+  start: THREE.Vector3
+  direction: THREE.Vector3
 }
 
 // Hero Scene - Particle Field with Starfield and Shooting Stars
 export class HeroScene extends ThreeScene {
   particles: THREE.Points | null = null
   particlesMaterial: THREE.PointsMaterial | null = null
-  shootingStars: Array<any> = []
+  shootingStars: HeroShootingStar[] = []
   shootingStarTimer: number = 0
   motionEnabled: boolean = true
-  geometries: any[] = []
-  geometryMaterials: any[] = []
+  geometries: THREE.BufferGeometry[] = []
+  geometryMaterials: (THREE.LineBasicMaterial | THREE.MeshBasicMaterial | THREE.PointsMaterial)[] = []
 
   setupObjects(): void {
     this.camera.position.z = 5
@@ -329,9 +340,14 @@ export class ExperienceScene extends ThreeScene {
   }
 }
 
+type CaseStudyShape = {
+  mesh: THREE.LineSegments
+  material: THREE.LineBasicMaterial
+}
+
 // Case Study Scene
 export class CaseStudyScene extends ThreeScene {
-  shapes: Array<any> = []
+  shapes: CaseStudyShape[] = []
 
   setupObjects(): void {
     this.camera.position.z = 4
@@ -373,9 +389,14 @@ export class CaseStudyScene extends ThreeScene {
   }
 }
 
+type SkillsCircle = {
+  mesh: THREE.Mesh
+  material: THREE.MeshBasicMaterial
+}
+
 // Skills Scene
 export class SkillsScene extends ThreeScene {
-  circles: Array<any> = []
+  circles: SkillsCircle[] = []
 
   setupObjects(): void {
     this.camera.position.z = 5
