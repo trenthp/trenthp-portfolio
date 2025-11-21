@@ -6,8 +6,8 @@ import * as THREE from 'three'
 import { useBackground } from '@/lib/background-context'
 
 type ShootingStar = {
-  mesh: THREE.Mesh
-  material: THREE.MeshBasicMaterial
+  mesh: THREE.Line
+  material: THREE.LineBasicMaterial
   life: number
   maxLife: number
   direction: THREE.Vector3
