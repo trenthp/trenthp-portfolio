@@ -61,13 +61,13 @@ export const PROJECTS: Project[] = [
     category: 'work',
   },
   {
-    name: 'Explorations in Spatial Computing & AR + AI',
+    name: 'Prior IC Work',
     description:
-      'Research and development sprint exploring spatial design foundations. Developed conceptual framework for spatial design system and functional WebXR prototype to test principles with AI workflows.',
-    link: '#case-study',
-    video: '/images/projects/spatial-computing-ar.png',
-    id: 'project-spatial-ar',
-    slug: 'spatial-computing-ar',
+      'A peek at my portfolio from prior agency and freelance engagements of SaaS and Enterprise applications.',
+    link: 'https://trenthp.github.io/portfolio/index.html',
+    video: '/images/projects/icWork.mp4',
+    id: 'ic-work',
+    slug: 'ic-work',
     category: 'work',
   },
   {
@@ -79,7 +79,17 @@ export const PROJECTS: Project[] = [
     id: 'tool-building-ai',
     slug: 'tool-building-ai',
     category: 'side',
-  }, 
+  },
+  {
+    name: 'Explorations in Spatial Computing & AR + AI',
+    description:
+      'Research and development sprint exploring spatial design foundations. Developed conceptual framework for spatial design system and functional WebXR prototype to test principles with AI workflows.',
+    link: '#case-study',
+    video: '/images/projects/spatial-computing-ar.png',
+    id: 'project-spatial-ar',
+    slug: 'spatial-computing-ar',
+    category: 'side',
+  },
   {
     name: 'Musical Exploration with AI',
     description:

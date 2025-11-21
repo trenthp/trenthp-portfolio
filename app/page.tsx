@@ -61,7 +61,7 @@ function ProjectVideo({ src }: ProjectVideoProps) {
       <img
         src={src}
         alt="Project"
-        className="aspect-video w-full rounded-xl object-cover"
+        className="aspect-video w-full rounded-xl object-cover object-top"
       />
     )
   }
@@ -72,7 +72,7 @@ function ProjectVideo({ src }: ProjectVideoProps) {
       autoPlay
       loop
       muted
-      className="aspect-video w-full rounded-xl"
+      className="aspect-video w-full rounded-xl object-cover object-top"
     />
   )
 }
@@ -141,10 +141,10 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p>
-            Product Design Leader with 12+ years of experience building and mentoring teams to deliver complex B2C/B2B digital products. Proven record of increasing user engagement, demonstrated by raising a flagship app's rating from 2.3 to 4.7+. Skilled in translating business ambiguity and emerging technologies (AI, XR) into clear, actionable product visions. Seeking to apply expertise in product strategy and human-centered design to build future immersive and intelligent applications.
+            Product Design Leader with 12+ years of experience building and mentoring teams to deliver complex B2C/B2B digital products. Proven record of increasing user engagement. Skilled in translating business ambiguity and emerging technologies into clear, actionable product visions. Seeking to team with others looking to build the future of immersive and intelligent applications.
           </p>
         </div>
-        <br/>
+        <br />
         <div className="flex flex-wrap items-center justify-start gap-2 sm:space-x-3">
           {SOCIAL_LINKS.map((link) => (
             <MagneticSocialLink key={link.label} link={link.link}>
@@ -163,7 +163,9 @@ export default function Personal() {
           {PROJECTS.filter((p) => p.category === 'work').map((project) => (
             <Link
               key={project.name}
-              href={`/projects/${project.slug}`}
+              href={project.link.startsWith('http') ? project.link : `/projects/${project.slug}`}
+              target={project.link.startsWith('http') ? '_blank' : undefined}
+              rel={project.link.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="relative overflow-hidden rounded-2xl p-[1px]"
             >
               <Spotlight
@@ -201,7 +203,9 @@ export default function Personal() {
           {PROJECTS.filter((p) => p.category === 'side').map((project) => (
             <Link
               key={project.name}
-              href={`/projects/${project.slug}`}
+              href={project.link.startsWith('http') ? project.link : `/projects/${project.slug}`}
+              target={project.link.startsWith('http') ? '_blank' : undefined}
+              rel={project.link.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="relative overflow-hidden rounded-2xl p-[1px]"
             >
               <Spotlight
@@ -256,13 +260,13 @@ export default function Personal() {
               </div>
             </div>
           ))}
-        <br/>
-        <p className="mb-5">
-          View full work history at{' '}
-          <a className="underline" href={`https://${LINKEDIN}`} target="_blank" rel="noopener noreferrer">
-            {LINKEDIN}
-          </a>
-        </p>
+          <br />
+          <p className="mb-5">
+            View full work history at{' '}
+            <a className="underline" href={`https://${LINKEDIN}`} target="_blank" rel="noopener noreferrer">
+              {LINKEDIN}
+            </a>
+          </p>
         </div>
       </motion.section>
 
