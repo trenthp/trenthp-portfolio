@@ -12,8 +12,8 @@ import {
 
 export type AnimatedBackgroundProps = {
   children:
-    | ReactElement<{ 'data-id': string }>[]
-    | ReactElement<{ 'data-id': string }>
+  | ReactElement<{ 'data-id': string; className?: string; children?: React.ReactNode }>[]
+  | ReactElement<{ 'data-id': string; className?: string; children?: React.ReactNode }>
   defaultValue?: string
   onValueChange?: (newActiveId: string | null) => void
   className?: string
@@ -46,20 +46,20 @@ export function AnimatedBackground({
     }
   }, [defaultValue])
 
-  return Children.map(children, (child: ReactElement<{ 'data-id': string }>, index) => {
+  return Children.map(children, (child: ReactElement<{ 'data-id': string; className?: string; children?: React.ReactNode }>, index) => {
     const id = child.props['data-id']
 
     const interactionProps = enableHover
       ? {
-          onMouseEnter: () => handleSetActiveId(id),
-          onMouseLeave: () => handleSetActiveId(null),
-        }
+        onMouseEnter: () => handleSetActiveId(id),
+        onMouseLeave: () => handleSetActiveId(null),
+      }
       : {
-          onClick: () => handleSetActiveId(id),
-        }
+        onClick: () => handleSetActiveId(id),
+      }
 
     return cloneElement(
-      child,
+      child as ReactElement<any>,
       {
         key: index,
         className: cn('relative inline-flex', child.props.className),
