@@ -5,13 +5,21 @@ import { useTheme } from 'next-themes'
 import * as THREE from 'three'
 import { useBackground } from '@/lib/background-context'
 
+type ShootingStar = {
+  mesh: THREE.Mesh
+  material: THREE.MeshBasicMaterial
+  life: number
+  maxLife: number
+  direction: THREE.Vector3
+}
+
 export function StarfieldBackground() {
   const containerRef = useRef<HTMLDivElement>(null)
   const sceneRef = useRef<THREE.Scene | null>(null)
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const particlesMeshRef = useRef<THREE.Points | null>(null)
-  const shootingStarsRef = useRef<Array<any>>([])
+  const shootingStarsRef = useRef<ShootingStar[]>([])
   const animationFrameRef = useRef<number | null>(null)
   const motionEnabledRef = useRef(true)
   const starsVisibleRef = useRef(true)

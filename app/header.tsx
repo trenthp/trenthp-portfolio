@@ -7,6 +7,7 @@ import { useBackground } from '@/lib/background-context'
 import { useTheme } from 'next-themes'
 
 const THEME_ORDER = ['dark', 'light', 'sepia', 'blue'] as const
+type ThemeName = typeof THEME_ORDER[number]
 
 const THEME_CONFIG = {
   dark: { label: 'Dark', icon: <SunIcon className="h-4 w-4" /> },
@@ -28,8 +29,8 @@ function ThemeToggle() {
   }
 
   // Handle 'system' theme or undefined by defaulting to 'dark'
-  const effectiveTheme = (theme && THEME_ORDER.includes(theme as any)) ? theme : 'dark'
-  const currentIndex = THEME_ORDER.indexOf(effectiveTheme as any)
+  const effectiveTheme = (theme && THEME_ORDER.includes(theme as ThemeName)) ? theme as ThemeName : 'dark'
+  const currentIndex = THEME_ORDER.indexOf(effectiveTheme)
   const nextIndex = (currentIndex + 1) % THEME_ORDER.length
   const nextTheme = THEME_ORDER[nextIndex]
   const currentConfig = THEME_CONFIG[effectiveTheme as keyof typeof THEME_CONFIG]
@@ -47,20 +48,22 @@ function ThemeToggle() {
   )
 }
 
+type StarMode = 'moving' | 'paused' | 'off'
+
 const STAR_MODES = [
   {
     label: 'Stars Moving',
-    id: 'moving',
+    id: 'moving' as StarMode,
     icon: <Pause className="h-4 w-4" />,
   },
   {
     label: 'Stars Paused',
-    id: 'paused',
+    id: 'paused' as StarMode,
     icon: <EyeOff className="h-4 w-4" />,
   },
   {
     label: 'No Stars',
-    id: 'off',
+    id: 'off' as StarMode,
     icon: <Eye className="h-4 w-4" />,
   },
 ]
@@ -84,7 +87,7 @@ function StarsControl() {
 
   return (
     <button
-      onClick={() => setStarMode(nextMode.id as any)}
+      onClick={() => setStarMode(nextMode.id)}
       className="inline-flex h-7 w-7 items-center justify-center rounded transition-colors duration-100 text-zinc-900 hover:bg-gray-300 dark:text-zinc-100 dark:hover:bg-gray-900 sepia:text-amber-900 sepia:hover:bg-amber-300 blue:text-blue-100 blue:hover:bg-blue-700"
       aria-label={`Stars: ${currentMode?.label}. Click to cycle to ${nextMode?.label}`}
       title={`Stars: ${currentMode?.label}`}

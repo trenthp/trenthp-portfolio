@@ -1,17 +1,22 @@
 import * as THREE from 'three'
 
+type SceneOptions = {
+  shape?: string
+}
+
 // Base Three.js Scene Setup
 export class ThreeScene {
   canvas: HTMLCanvasElement
-  options: any
+  options: SceneOptions
   scene!: THREE.Scene
   camera!: THREE.PerspectiveCamera
   renderer!: THREE.WebGLRenderer
   mouse: { x: number; y: number } = { x: 0, y: 0 }
   targetRotation: { x: number; y: number } = { x: 0, y: 0 }
   initialized: boolean = false
+  _handleMouseMove?: (e: MouseEvent) => void
 
-  constructor(canvas: HTMLCanvasElement, options: any = {}) {
+  constructor(canvas: HTMLCanvasElement, options: SceneOptions = {}) {
     this.canvas = canvas
     this.options = options
 
