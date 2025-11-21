@@ -1,13 +1,17 @@
 import React from 'react'
 
+import Image from 'next/image'
+
 export function TrackGrid() {
     return (
         <div className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 mt-6">
             <div>
                 <a href="https://www.youtube.com/watch?v=3sTUNIxvt6c" target="_blank" rel="noopener noreferrer" className="block transition-opacity hover:opacity-90">
-                    <img
+                    <Image
                         src="/images/projects/a notion - 1 - life is not a journey-min.png"
                         alt="Life is Not a Journey"
+                        width={1280}
+                        height={720}
                         className="w-full rounded-xl border border-gray-200 dark:border-gray-800 mb-0"
                     />
                 </a>
@@ -22,9 +26,11 @@ export function TrackGrid() {
             </div>
             <div>
                 <a href="https://www.youtube.com/watch?v=QKnSl7iYHPc" target="_blank" rel="noopener noreferrer" className="block transition-opacity hover:opacity-90">
-                    <img
+                    <Image
                         src="/images/projects/a notion - 2 - knowledge uncertain-min.png"
                         alt="Knowledge Uncertain"
+                        width={1280}
+                        height={720}
                         className="w-full rounded-xl border border-gray-200 dark:border-gray-800 mb-0"
                     />
                 </a>
@@ -39,9 +45,11 @@ export function TrackGrid() {
             </div>
             <div>
                 <a href="https://www.youtube.com/watch?v=FA5netcaD4g" target="_blank" rel="noopener noreferrer" className="block transition-opacity hover:opacity-90">
-                    <img
+                    <Image
                         src="/images/projects/a notion - 3 - the privileged life-min.png"
                         alt="The Privileged Life"
+                        width={1280}
+                        height={720}
                         className="w-full rounded-xl border border-gray-200 dark:border-gray-800 mb-0"
                     />
                 </a>
@@ -56,9 +64,11 @@ export function TrackGrid() {
             </div>
             <div>
                 <a href="https://www.youtube.com/watch?v=AHYDGaHl97Y" target="_blank" rel="noopener noreferrer" className="block transition-opacity hover:opacity-90">
-                    <img
+                    <Image
                         src="/images/projects/a notion - 4 - one under the sky-min.png"
                         alt="One Under the Sky"
+                        width={1280}
+                        height={720}
                         className="w-full rounded-xl border border-gray-200 dark:border-gray-800 mb-0"
                     />
                 </a>

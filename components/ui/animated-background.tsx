@@ -59,7 +59,7 @@ export function AnimatedBackground({
       }
 
     return cloneElement(
-      child as ReactElement<any>,
+      child as ReactElement<{ className?: string; 'data-checked'?: string } & React.HTMLAttributes<HTMLElement>>,
       {
         key: index,
         className: cn('relative inline-flex', child.props.className),
