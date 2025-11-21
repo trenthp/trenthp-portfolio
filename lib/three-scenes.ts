@@ -232,11 +232,11 @@ export class HeroScene extends ThreeScene {
         if (star.life < star.maxLife) {
           const progress = star.life / star.maxLife
           if (progress < 0.3) {
-            star.mesh.material.opacity = progress * 2
+            star.material.opacity = progress * 2
           } else if (progress > 0.6) {
-            star.mesh.material.opacity = (1 - progress) * 2.5
+            star.material.opacity = (1 - progress) * 2.5
           } else {
-            star.mesh.material.opacity = 0.6
+            star.material.opacity = 0.6
           }
 
           const positions = star.mesh.geometry.attributes.position.array as Float32Array
