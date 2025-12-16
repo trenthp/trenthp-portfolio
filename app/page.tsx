@@ -131,7 +131,7 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p>
-            I'm a product design leader who codes, powered by AI. 12+ years leading teams and shipping B2C/B2B products that drive real outcomes. My edge: AI-native product thinking, design, and code — concept to ship, faster.
+            I&apos;m a product design leader who codes, powered by AI. 12+ years leading teams and shipping B2C/B2B products that drive real outcomes. My edge: AI-native product thinking, design, and code — concept to ship, faster.
           </p>
         </div>
         <br />
