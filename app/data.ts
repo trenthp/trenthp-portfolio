@@ -71,6 +71,16 @@ export const PROJECTS: Project[] = [
     category: 'work',
   },
   {
+    name: 'Group Nom',
+    description:
+      'Building a collaborative restaurant discovery app from scratch. Exploring what becomes possible when AI-assisted development meets strong product and design thinking.',
+    link: '#case-study',
+    video: '/images/projects/groupNom/groupNom_slide-2a.png',
+    id: 'project-group-nom',
+    slug: 'group-nom',
+    category: 'side',
+  },
+  {
     name: 'Tool Building with AI',
     description:
       'Building a visual mapping tool that connects user needs to interface design using JTBD and Elements of UX frameworks.',
