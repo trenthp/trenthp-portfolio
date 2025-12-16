@@ -31,6 +31,16 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'Group Nom',
+    description:
+      'Building a collaborative restaurant discovery app from scratch. Exploring what becomes possible when AI-native development meets strong product and design thinking.',
+    link: '#case-study',
+    video: '/images/projects/groupNom/groupNom_slide-2a.png',
+    id: 'project-group-nom',
+    slug: 'group-nom',
+    category: 'side',
+  },
+  {
     name: 'Building an AI-Empowered Design Team',
     description:
       'Strategic program to solve a high-visibility product crisis by integrating AI into our design workflow. Resolved CEO-level issues, launched major features, and cut design/dev cycle time by 50%.',
@@ -61,26 +71,6 @@ export const PROJECTS: Project[] = [
     category: 'work',
   },
   {
-    name: 'Prior IC Work',
-    description:
-      'A peek at my portfolio from prior agency and freelance engagements of SaaS and Enterprise applications.',
-    link: 'https://trenthp.github.io/portfolio/index.html',
-    video: '/images/projects/icWork.mp4',
-    id: 'ic-work',
-    slug: 'ic-work',
-    category: 'work',
-  },
-  {
-    name: 'Group Nom',
-    description:
-      'Building a collaborative restaurant discovery app from scratch. Exploring what becomes possible when AI-assisted development meets strong product and design thinking.',
-    link: '#case-study',
-    video: '/images/projects/groupNom/groupNom_slide-2a.png',
-    id: 'project-group-nom',
-    slug: 'group-nom',
-    category: 'side',
-  },
-  {
     name: 'Tool Building with AI',
     description:
       'Building a visual mapping tool that connects user needs to interface design using JTBD and Elements of UX frameworks.',
@@ -109,6 +99,16 @@ export const PROJECTS: Project[] = [
     id: 'project-musical-ai',
     slug: 'musical-exploration-ai',
     category: 'side',
+  },
+  {
+    name: 'Prior IC Work',
+    description:
+      'A peek at my portfolio from prior agency and freelance engagements of SaaS and Enterprise applications.',
+    link: 'https://trenthp.github.io/portfolio/index.html',
+    video: '/images/projects/icWork.mp4',
+    id: 'ic-work',
+    slug: 'ic-work',
+    category: 'work',
   },
 ]
 

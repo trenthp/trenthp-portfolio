@@ -148,49 +148,9 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Work Projects</h3>
+        <h3 className="mb-5 text-lg font-medium">Latest Projects</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {PROJECTS.filter((p) => p.category === 'work').map((project) => (
-            <Link
-              key={project.name}
-              href={project.link.startsWith('http') ? project.link : `/projects/${project.slug}`}
-              target={project.link.startsWith('http') ? '_blank' : undefined}
-              rel={project.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="relative overflow-hidden rounded-2xl p-[1px]"
-            >
-              <Spotlight
-                size={200}
-                fromColor={spotlightColors.from}
-                viaColor={spotlightColors.via}
-                toColor={spotlightColors.to}
-              />
-              <div className="card-bg relative h-full w-full rounded-[15px] p-4">
-                <div className="space-y-4">
-                  <div className="relative rounded-lg overflow-hidden">
-                    <ProjectVideo src={project.video} />
-                  </div>
-                  <div>
-                    <h4 className="font-base font-[450]">
-                      {project.name}
-                    </h4>
-                    <p className="text-sm">
-                      {project.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </motion.section>
-
-      <motion.section
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-5 text-lg font-medium">Side Projects</h3>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {PROJECTS.filter((p) => p.category === 'side').map((project) => (
+          {PROJECTS.map((project) => (
             <Link
               key={project.name}
               href={project.link.startsWith('http') ? project.link : `/projects/${project.slug}`}
