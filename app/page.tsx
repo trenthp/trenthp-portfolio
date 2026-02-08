@@ -130,7 +130,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <div className="flex-1">
-          <p>
+          <p className="md:text-lg">
             I&apos;m a product design leader who codes, powered by AI. 12+ years leading teams and shipping B2C/B2B products that drive real outcomes. My edge: AI-native product thinking, design, and code — concept to ship, faster.
           </p>
         </div>
@@ -148,7 +148,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Latest Projects</h3>
+        <h3 className="mb-5 text-lg font-medium md:text-xl">Latest Projects</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.map((project) => (
             <Link
@@ -173,7 +173,7 @@ export default function Personal() {
                     <h4 className="font-base font-[450]">
                       {project.name}
                     </h4>
-                    <p className="text-sm">
+                    <p className="text-sm md:text-base">
                       {project.description}
                     </p>
                   </div>
@@ -188,7 +188,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
+        <h3 className="mb-5 text-lg font-medium md:text-xl">Work Experience</h3>
         <div className="flex flex-col space-y-2">
           {WORK_EXPERIENCE.map((job) => (
             <div
@@ -224,7 +224,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Connect</h3>
+        <h3 className="mb-5 text-lg font-medium md:text-xl">Connect</h3>
         <p className="mb-5">
           Feel free to contact me at{' '}
           <a className="underline" href={`mailto:${EMAIL}`}>

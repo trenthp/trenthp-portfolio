@@ -64,7 +64,7 @@ export function ProjectNavigation() {
                 Previous Project
               </span>
             </div>
-            <h3 className="nav-title mt-0 text-sm font-medium text-zinc-900 transition-colors group-hover:text-zinc-900 dark:text-zinc-100 dark:group-hover:text-zinc-100 sepia:text-amber-900 sepia:group-hover:text-[#FBF0D9] blue:text-blue-100 blue:group-hover:text-[#F7F6F4]">
+            <h3 className="nav-title mt-0 text-sm font-medium md:text-base text-zinc-900 transition-colors group-hover:text-zinc-900 dark:text-zinc-100 dark:group-hover:text-zinc-100 sepia:text-amber-900 sepia:group-hover:text-[#FBF0D9] blue:text-blue-100 blue:group-hover:text-[#F7F6F4]">
               {previousProject.name}
             </h3>
           </div>
@@ -82,7 +82,7 @@ export function ProjectNavigation() {
               </span>
               <ArrowRight className="h-3 w-3 flex-shrink-0 text-zinc-900 dark:text-zinc-100 sepia:text-amber-900 blue:text-blue-100" />
             </div>
-            <h3 className="nav-title mt-0 text-sm font-medium text-zinc-900 transition-colors group-hover:text-zinc-900 dark:text-zinc-100 dark:group-hover:text-zinc-100 sepia:text-amber-900 sepia:group-hover:text-[#FBF0D9] blue:text-blue-100 blue:group-hover:text-[#F7F6F4]">
+            <h3 className="nav-title mt-0 text-sm font-medium md:text-base text-zinc-900 transition-colors group-hover:text-zinc-900 dark:text-zinc-100 dark:group-hover:text-zinc-100 sepia:text-amber-900 sepia:group-hover:text-[#FBF0D9] blue:text-blue-100 blue:group-hover:text-[#F7F6F4]">
               {nextProject.name}
             </h3>
           </div>
