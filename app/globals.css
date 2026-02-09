@@ -144,6 +144,34 @@ html.blue h1, html.blue h2, html.blue h3, html.blue h4, html.blue h5, html.blue 
   color: #F7F6F4 !important; /* headline text */
 }
 
+/* Sticky glass header — dark glass variant */
+.glass-header {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+html.dark .glass-header {
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html.sepia .glass-header {
+  background: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+html.blue .glass-header {
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 /* Header specific styles for all themes */
 .header-link {
   color: #111111; /* light theme headline */

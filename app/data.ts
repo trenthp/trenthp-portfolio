@@ -31,29 +31,9 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Group Nom',
-    description:
-      'Building a collaborative restaurant discovery app from scratch. Exploring what becomes possible when AI-native development meets strong product and design thinking.',
-    link: '#case-study',
-    video: '/images/projects/groupNom/groupNom_slide-2a.png',
-    id: 'project-group-nom',
-    slug: 'group-nom',
-    category: 'side',
-  },
-  {
-    name: 'Building an AI-Empowered Design Team',
-    description:
-      'Strategic program to solve a high-visibility product crisis by integrating AI into our design workflow. Resolved CEO-level issues, launched major features, and cut design/dev cycle time by 50%.',
-    link: '#case-study',
-    video: '/images/projects/ai-empowered-design.png',
-    id: 'project-ai-design',
-    slug: 'building-ai-empowered-design-team',
-    category: 'work',
-  },
-  {
     name: '2.3 → 4.7+ App Store Turnaround',
     description:
-      'Complete strategic overhaul of flagship B2C mobile application. Transformed a 2.3-star app into 4.7+ star brand asset, driving +35% user retention and +40% daily active users.',
+      'Diagnosed a failing app as an organizational problem, not a UI problem. Built the team, strategy, and process to turn it around. +35% retention, +40% DAU.',
     link: '#case-study',
     video: '/images/projects/app-store-turnaround.png',
     id: 'project-app-turnaround',
@@ -61,54 +41,24 @@ export const PROJECTS: Project[] = [
     category: 'work',
   },
   {
-    name: 'My Leadership Philosophy',
+    name: 'Turning a CEO-Level Crisis into a New Way of Working',
     description:
-      'How I design teams, strategies, and products that thrive in complexity. Core principles for building empowered, high-performing teams that deliver great results.',
+      'Used a high-pressure moment to prove that designers who get closer to code ship faster. Proved it myself first, then scaled it. 50% faster prototype-to-test cycles.',
     link: '#case-study',
-    video: '/images/projects/leadership-philosophy.png',
-    id: 'project-leadership',
-    slug: 'leadership-philosophy',
+    video: '/images/projects/ai-empowered-design.png',
+    id: 'project-ai-design',
+    slug: 'ceo-crisis-new-way-of-working',
     category: 'work',
   },
   {
-    name: 'Tool Building with AI',
+    name: 'Group Nom',
     description:
-      'Building a visual mapping tool that connects user needs to interface design using JTBD and Elements of UX frameworks.',
+      'Built a collaborative restaurant discovery app from zero to live product, solo. Product strategy, design, brand, and full-stack development. Pivoted the data model mid-build when the original approach hit a wall.',
     link: '#case-study',
-    video: '/images/projects/layers-mapping.mp4',
-    id: 'tool-building-ai',
-    slug: 'tool-building-ai',
+    video: '/images/projects/groupNom/groupNom_slide-2a.png',
+    id: 'project-group-nom',
+    slug: 'group-nom',
     category: 'side',
-  },
-  {
-    name: 'Explorations in Spatial Computing & AR + AI',
-    description:
-      'Research and development sprint exploring spatial design foundations. Developed conceptual framework for spatial design system and functional WebXR prototype to test principles with AI workflows.',
-    link: '#case-study',
-    video: '/images/projects/spatial-computing-ar.png',
-    id: 'project-spatial-ar',
-    slug: 'spatial-computing-ar',
-    category: 'side',
-  },
-  {
-    name: 'Musical Exploration with AI',
-    description:
-      'Exploring the intersection of music and artificial intelligence. Producing an EP leveraging AI tools to create, experiment, and innovate in sound design and composition.',
-    link: '#case-study',
-    video: '/images/projects/a notion EP.png',
-    id: 'project-musical-ai',
-    slug: 'musical-exploration-ai',
-    category: 'side',
-  },
-  {
-    name: 'Prior IC Work',
-    description:
-      'A peek at my portfolio from prior agency and freelance engagements of SaaS and Enterprise applications.',
-    link: 'https://trenthp.github.io/portfolio/index.html',
-    video: '/images/projects/icWork.mp4',
-    id: 'ic-work',
-    slug: 'ic-work',
-    category: 'work',
   },
 ]
 
@@ -174,10 +124,6 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'GitHub',
     link: 'https://github.com/trenthp',
-  },
-  {
-    label: 'Instagram',
-    link: 'https://instagram.com/trenthp',
   },
   {
     label: 'Resume',

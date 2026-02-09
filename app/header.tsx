@@ -1,5 +1,4 @@
 'use client'
-import { TextEffect } from '@/components/ui/text-effect'
 import Link from 'next/link'
 import { Pause, Eye, EyeOff, MoonIcon, SunIcon, Palette } from 'lucide-react'
 import { useEffect, useState } from 'react'
@@ -98,29 +97,29 @@ function StarsControl() {
 }
 
 export function Header() {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <header className="mb-8 flex flex-col-reverse items-end gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-24">
+    <header className={`sticky top-4 z-50 px-4 py-3 mb-8 flex flex-col-reverse items-end gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-24 transition-all duration-300 ${scrolled ? 'glass-header' : ''}`}>
       <div className="flex items-start gap-4 sm:items-center">
-        <Link href="/" className="h-16 w-16 flex-shrink-0">
+        <Link href="/" className={`flex-shrink-0 transition-all duration-300 ${scrolled ? 'h-10 w-10' : 'h-16 w-16'}`}>
           <img
             src="/images/trent_circle.png"
             alt="Trent Holms Petersen"
-            className="h-16 w-16 rounded-full"
+            className={`rounded-full transition-all duration-300 ${scrolled ? 'h-10 w-10' : 'h-16 w-16'}`}
           />
         </Link>
         <div>
           <Link href="/" className="font-medium header-link">
             Trent Holms Petersen
           </Link>
-          <TextEffect
-            as="p"
-            preset="fade"
-            per="char"
-            className="header-subtitle"
-            delay={0.5}
-          >
-            Product Design Leader | Leading AI-empowered designers, Building Immersive, Intelligent Applications
-          </TextEffect>
         </div>
       </div>
       <div className="flex items-center gap-2 text-xs text-zinc-400">

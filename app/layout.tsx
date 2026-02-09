@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     canonical: '/'
   },
   title: {
-    default: 'Trent Holms Petersen | Product Design Leader Who Codes',
+    default: 'Trent Holms Petersen | Product Leader, Designer, Developer',
     template: '%s | Trent Holms Petersen'
   },
-  description: 'Product Design Leader who codes. 12+ years building B2C/B2B products with an AI-native approach to strategy, design, and development. View case studies on app turnarounds and AI-powered workflows.',
+  description: 'Product leader with deep roots in design and a growing practice in code. 12+ years shipping B2C and B2B products. Strategy, team building, design, and development.',
   icons: {
     icon: '/images/favicon.svg',
   }

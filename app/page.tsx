@@ -5,10 +5,8 @@ import { Magnetic } from '@/components/ui/magnetic'
 import Link from 'next/link'
 import {
   PROJECTS,
-  WORK_EXPERIENCE,
   EMAIL,
   SOCIAL_LINKS,
-  LINKEDIN,
 } from './data'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
@@ -129,9 +127,15 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <div className="flex-1">
+        <div className="flex-1 space-y-4">
           <p className="md:text-lg">
-            I&apos;m a product design leader who codes, powered by AI. 12+ years leading teams and shipping B2C/B2B products that drive real outcomes. My edge: AI-native product thinking, design, and code — concept to ship, faster.
+            I&apos;m a product leader with deep roots in design and a growing practice in code. I figure out what the real problem is, then do whatever it takes to solve it: strategy, team building, design, development, or all of the above.
+          </p>
+          <p className="md:text-lg">
+            12+ years shipping B2C and B2B products. Most recently leading product design at Optavia, where I took a 2.3-star app to 4.7+, built a design organization from zero, and introduced AI-powered workflows that cut prototype-to-test cycles in half.
+          </p>
+          <p className="md:text-lg">
+            I&apos;m looking for my next role at a company where I can own product direction and stay hands-on. Best fit: smaller teams that need someone who can think strategically and ship personally.
           </p>
         </div>
         <br />
@@ -148,8 +152,8 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium md:text-xl">Latest Projects</h3>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <h3 className="mb-5 text-lg font-medium md:text-xl">Work</h3>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1">
           {PROJECTS.map((project) => (
             <Link
               key={project.name}
@@ -165,8 +169,8 @@ export default function Personal() {
                 toColor={spotlightColors.to}
               />
               <div className="card-bg relative h-full w-full rounded-[15px] p-4">
-                <div className="space-y-4">
-                  <div className="relative rounded-lg overflow-hidden">
+                <div className="space-y-4 lg:space-y-0 lg:flex lg:gap-6 lg:items-center">
+                  <div className="relative rounded-lg overflow-hidden lg:w-1/2 lg:shrink-0">
                     <ProjectVideo src={project.video} />
                   </div>
                   <div>
@@ -188,34 +192,22 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium md:text-xl">Work Experience</h3>
-        <div className="flex flex-col space-y-2">
-          {WORK_EXPERIENCE.map((job) => (
-            <div
-              key={job.id}
-              className="rounded-2xl p-4 card-bg"
-            >
-              <div className="flex w-full flex-row gap-6">
-                <p className="w-32 shrink-0">
-                  {job.start} - {job.end}
-                </p>
-                <div>
-                  <h4 className="font-normal">
-                    {job.title}
-                  </h4>
-                  <p>
-                    {job.company}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-          <br />
-          <p className="mb-5">
-            View full work history at{' '}
-            <a className="underline" href={`https://${LINKEDIN}`} target="_blank" rel="noopener noreferrer">
-              {LINKEDIN}
-            </a>
+        <h3 className="mb-5 text-lg font-medium md:text-xl">About Me</h3>
+        <div className="space-y-4">
+          <p>
+            I work the way I do because I&apos;ve never been comfortable staying in one lane. I&apos;ve always cared about strategy, design, and how things get built. For most of my career, the tools limited what one person could actually execute. That&apos;s changed. AI removed the ceiling, and the way I&apos;ve always thought about product work is now the way I can actually operate.
+          </p>
+          <p>
+            The common thread across my work is this: I look for the real problem underneath the surface request, I figure out the fastest path to solving it, and I do the work myself when that&apos;s what it takes. Sometimes that means building a team from scratch and shifting a company&apos;s mindset. Sometimes it means writing prototype code that ships to production. Usually it means several things at once.
+          </p>
+          <p>
+            I lead with deep curiosity. The most useful questions are &ldquo;why?&rdquo; and &ldquo;what else?&rdquo; Why, because surface-level requests usually hide the real problem. What else, because there&apos;s almost always more to the story, and being exhaustive in the work is how you avoid solving the wrong thing. I build teams where everyone is encouraged to ask both.
+          </p>
+          <p>
+            I care about the people I work with, and I believe a healthy, empowered team is the only way to build something worth using. I hire for curiosity, craft, and collaboration. I mentor by giving people autonomy and real ownership. I partner across functions by building shared understanding, not by protecting territory.
+          </p>
+          <p>
+            When I&apos;m not working on products, I&apos;m adventuring with my kids and exploring whatever catches my attention: AR/VR, 3D printing, video games, art, concerts, waves, and sand.
           </p>
         </div>
       </motion.section>
