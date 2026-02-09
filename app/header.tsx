@@ -107,8 +107,8 @@ export function Header() {
   }, [])
 
   return (
-    <header className={`sticky top-4 z-50 px-4 py-3 mb-8 flex flex-col-reverse items-end gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-24 transition-all duration-300 ${scrolled ? 'glass-header' : ''}`}>
-      <div className="flex items-start gap-4 sm:items-center">
+    <header className={`sticky top-4 z-50 px-4 py-3 mb-8 flex flex-row items-center justify-between gap-4 transition-all duration-300 ${scrolled ? 'glass-header' : ''}`}>
+      <div className="flex items-center gap-4">
         <Link href="/" className={`flex-shrink-0 transition-all duration-300 ${scrolled ? 'h-10 w-10' : 'h-16 w-16'}`}>
           <img
             src="/images/trent_circle.png"
