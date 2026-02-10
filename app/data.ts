@@ -45,7 +45,7 @@ export const PROJECTS: Project[] = [
     description:
       'Used a high-pressure moment to prove that designers who get closer to code ship faster. Proved it myself first, then scaled it. 50% faster prototype-to-test cycles.',
     link: '#case-study',
-    video: '/images/projects/ai-empowered-design.png',
+    video: '/images/projects/designHub_coverImage.mp4',
     id: 'project-ai-design',
     slug: 'ceo-crisis-new-way-of-working',
     category: 'work',
