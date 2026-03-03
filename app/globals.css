@@ -587,6 +587,102 @@ img {
   filter: none !important;
 }
 
+/* ─── Presentation theme-aware styles ────────────────────────────── */
+
+.pres-bg { background-color: var(--bg-light); }
+html.dark .pres-bg { background-color: var(--bg-dark); }
+html.sepia .pres-bg { background-color: var(--bg-sepia); }
+html.blue .pres-bg { background-color: var(--bg-blue); }
+
+.pres-card { background-color: rgba(0, 0, 0, 0.04); }
+html.dark .pres-card { background-color: rgba(255, 255, 255, 0.05); }
+html.sepia .pres-card { background-color: rgba(0, 0, 0, 0.04); }
+html.blue .pres-card { background-color: rgba(255, 255, 255, 0.08); }
+
+.pres-rail-line { background-color: rgba(0, 0, 0, 0.1); }
+html.dark .pres-rail-line { background-color: rgba(255, 255, 255, 0.1); }
+html.sepia .pres-rail-line { background-color: rgba(0, 0, 0, 0.1); }
+html.blue .pres-rail-line { background-color: rgba(255, 255, 255, 0.1); }
+
+.pres-input {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #111111 !important;
+}
+.pres-input::placeholder { color: rgba(0, 0, 0, 0.3) !important; }
+.pres-input:focus { border-color: rgba(0, 0, 0, 0.4) !important; }
+html.dark .pres-input {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #FFFFFF !important;
+}
+html.dark .pres-input::placeholder { color: rgba(255, 255, 255, 0.3) !important; }
+html.dark .pres-input:focus { border-color: rgba(255, 255, 255, 0.5) !important; }
+html.sepia .pres-input {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #5F4B32 !important;
+}
+html.sepia .pres-input::placeholder { color: rgba(95, 75, 50, 0.3) !important; }
+html.sepia .pres-input:focus { border-color: rgba(95, 75, 50, 0.5) !important; }
+html.blue .pres-input {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #E5EEFF !important;
+}
+html.blue .pres-input::placeholder { color: rgba(255, 255, 255, 0.3) !important; }
+html.blue .pres-input:focus { border-color: rgba(255, 255, 255, 0.5) !important; }
+
+.pres-submit {
+  background-color: #111111 !important;
+  color: #F7F6F4 !important;
+}
+.pres-submit:hover {
+  background-color: #333333 !important;
+  color: #F7F6F4 !important;
+}
+html.dark .pres-submit {
+  background-color: #FFFFFF !important;
+  color: #111111 !important;
+}
+html.dark .pres-submit:hover {
+  background-color: #E0E0E0 !important;
+  color: #111111 !important;
+}
+html.sepia .pres-submit {
+  background-color: #5F4B32 !important;
+  color: #FBF0D9 !important;
+}
+html.sepia .pres-submit:hover {
+  background-color: #735C3F !important;
+  color: #FBF0D9 !important;
+}
+html.blue .pres-submit {
+  background-color: #E5EEFF !important;
+  color: #0032D2 !important;
+}
+html.blue .pres-submit:hover {
+  background-color: #FFFFFF !important;
+  color: #0032D2 !important;
+}
+
+.pres-spinner {
+  border-color: rgba(0, 0, 0, 0.2);
+  border-top-color: #111111;
+}
+html.dark .pres-spinner {
+  border-color: rgba(255, 255, 255, 0.2);
+  border-top-color: #FFFFFF;
+}
+html.sepia .pres-spinner {
+  border-color: rgba(95, 75, 50, 0.2);
+  border-top-color: #5F4B32;
+}
+html.blue .pres-spinner {
+  border-color: rgba(255, 255, 255, 0.2);
+  border-top-color: #F7F6F4;
+}
+
 /* Project navigation styling */
 .nav-link,
 .nav-label,

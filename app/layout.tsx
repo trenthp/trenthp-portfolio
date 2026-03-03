@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     canonical: '/'
   },
   title: {
-    default: 'Trent Holms Petersen | Product Leader, Designer, Developer',
+    default: 'Trent Holms Petersen | Strategy, Design, Code',
     template: '%s | Trent Holms Petersen'
   },
-  description: 'Product leader with deep roots in design and a growing practice in code. 12+ years shipping B2C and B2B products. Strategy, team building, design, and development.',
+  description: 'Product leader and founder of Mad Catter Studio. 12+ years shipping B2C and B2B products. Strategy, design, and code.',
   icons: {
     icon: '/images/favicon.svg',
   }

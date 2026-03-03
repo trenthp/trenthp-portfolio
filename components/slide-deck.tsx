@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, ReactNode, createContext, useContext } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from 'lucide-react'
 
 // Context for slide navigation
 interface SlideContextType {
@@ -37,6 +37,7 @@ export function Slide({ children, className = '' }: SlideProps) {
 interface SlideDeckProps {
   children: ReactNode[]
   className?: string
+  direction?: 'horizontal' | 'vertical'
 }
 
 // Base width for scaling calculations (typical laptop width)
@@ -44,7 +45,7 @@ const BASE_WIDTH = 1440
 // Threshold above which scaling kicks in
 const SCALE_THRESHOLD = 1920
 
-export function SlideDeck({ children, className = '' }: SlideDeckProps) {
+export function SlideDeck({ children, className = '', direction: slideDirection = 'horizontal' }: SlideDeckProps) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [direction, setDirection] = useState(0)
   const [scale, setScale] = useState(1)
@@ -54,6 +55,8 @@ export function SlideDeck({ children, className = '' }: SlideDeckProps) {
   const isScrollingRef = useRef(false)
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
+  const isVertical = slideDirection === 'vertical'
+  const axis = isVertical ? 'y' : 'x'
   const totalSlides = children.length
 
   // Calculate scale for large screens
@@ -162,11 +165,11 @@ export function SlideDeck({ children, className = '' }: SlideDeckProps) {
 
   // Touch swipe navigation
   const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartRef.current = e.touches[0].clientX
+    touchStartRef.current = isVertical ? e.touches[0].clientY : e.touches[0].clientX
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndRef.current = e.touches[0].clientX
+    touchEndRef.current = isVertical ? e.touches[0].clientY : e.touches[0].clientX
   }
 
   const handleTouchEnd = () => {
@@ -184,15 +187,16 @@ export function SlideDeck({ children, className = '' }: SlideDeckProps) {
 
   const slideVariants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? '100%' : '-100%',
+      [axis]: direction > 0 ? '100%' : '-100%',
       opacity: 0,
     }),
     center: {
       x: 0,
+      y: 0,
       opacity: 1,
     },
     exit: (direction: number) => ({
-      x: direction > 0 ? '-100%' : '100%',
+      [axis]: direction > 0 ? '-100%' : '100%',
       opacity: 0,
     }),
   }
@@ -222,7 +226,7 @@ export function SlideDeck({ children, className = '' }: SlideDeckProps) {
             animate="center"
             exit="exit"
             transition={{
-              x: { type: 'spring', stiffness: 300, damping: 30 },
+              [axis]: { type: 'spring', stiffness: 300, damping: 30 },
               opacity: { duration: 0.2 },
             }}
             className="absolute inset-0 flex items-center justify-center"
@@ -240,31 +244,63 @@ export function SlideDeck({ children, className = '' }: SlideDeckProps) {
         </AnimatePresence>
 
         {/* Navigation arrows */}
-        <button
-          onClick={prevSlide}
-          disabled={currentSlide === 0}
-          className="absolute top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 text-white/70 backdrop-blur-sm transition-all hover:bg-white/20 hover:text-white disabled:opacity-30 disabled:hover:bg-white/10 disabled:hover:text-white/70"
-          style={{
-            left: `${1 * scale}rem`,
-            padding: `${0.75 * scale}rem`,
-          }}
-          aria-label="Previous slide"
-        >
-          <ChevronLeft style={{ width: `${1.5 * scale}rem`, height: `${1.5 * scale}rem` }} />
-        </button>
+        {isVertical ? (
+          <>
+            <button
+              onClick={prevSlide}
+              disabled={currentSlide === 0}
+              className="absolute left-1/2 z-10 -translate-x-1/2 rounded-full bg-white/10 text-white/70 backdrop-blur-sm transition-all hover:bg-white/20 hover:text-white disabled:opacity-30 disabled:hover:bg-white/10 disabled:hover:text-white/70"
+              style={{
+                top: `${1 * scale}rem`,
+                padding: `${0.75 * scale}rem`,
+              }}
+              aria-label="Previous slide"
+            >
+              <ChevronUp style={{ width: `${1.5 * scale}rem`, height: `${1.5 * scale}rem` }} />
+            </button>
 
-        <button
-          onClick={nextSlide}
-          disabled={currentSlide === totalSlides - 1}
-          className="absolute top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 text-white/70 backdrop-blur-sm transition-all hover:bg-white/20 hover:text-white disabled:opacity-30 disabled:hover:bg-white/10 disabled:hover:text-white/70"
-          style={{
-            right: `${1 * scale}rem`,
-            padding: `${0.75 * scale}rem`,
-          }}
-          aria-label="Next slide"
-        >
-          <ChevronRight style={{ width: `${1.5 * scale}rem`, height: `${1.5 * scale}rem` }} />
-        </button>
+            <button
+              onClick={nextSlide}
+              disabled={currentSlide === totalSlides - 1}
+              className="absolute left-1/2 z-10 -translate-x-1/2 rounded-full bg-white/10 text-white/70 backdrop-blur-sm transition-all hover:bg-white/20 hover:text-white disabled:opacity-30 disabled:hover:bg-white/10 disabled:hover:text-white/70"
+              style={{
+                bottom: `${1.5 * scale}rem`,
+                padding: `${0.75 * scale}rem`,
+              }}
+              aria-label="Next slide"
+            >
+              <ChevronDown style={{ width: `${1.5 * scale}rem`, height: `${1.5 * scale}rem` }} />
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={prevSlide}
+              disabled={currentSlide === 0}
+              className="absolute top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 text-white/70 backdrop-blur-sm transition-all hover:bg-white/20 hover:text-white disabled:opacity-30 disabled:hover:bg-white/10 disabled:hover:text-white/70"
+              style={{
+                left: `${1 * scale}rem`,
+                padding: `${0.75 * scale}rem`,
+              }}
+              aria-label="Previous slide"
+            >
+              <ChevronLeft style={{ width: `${1.5 * scale}rem`, height: `${1.5 * scale}rem` }} />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              disabled={currentSlide === totalSlides - 1}
+              className="absolute top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 text-white/70 backdrop-blur-sm transition-all hover:bg-white/20 hover:text-white disabled:opacity-30 disabled:hover:bg-white/10 disabled:hover:text-white/70"
+              style={{
+                right: `${1 * scale}rem`,
+                padding: `${0.75 * scale}rem`,
+              }}
+              aria-label="Next slide"
+            >
+              <ChevronRight style={{ width: `${1.5 * scale}rem`, height: `${1.5 * scale}rem` }} />
+            </button>
+          </>
+        )}
 
         {/* Progress bar */}
         <div
@@ -293,30 +329,57 @@ export function SlideDeck({ children, className = '' }: SlideDeckProps) {
         </div>
 
         {/* Dot indicators */}
-        <div
-          className="absolute left-1/2 z-10 flex -translate-x-1/2"
-          style={{
-            bottom: `${1 * scale}rem`,
-            gap: `${0.5 * scale}rem`,
-          }}
-        >
-          {children.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`rounded-full transition-all ${
-                index === currentSlide
-                  ? 'bg-white'
-                  : 'bg-white/30 hover:bg-white/50'
-              }`}
-              style={{
-                width: index === currentSlide ? `${1 * scale}rem` : `${0.5 * scale}rem`,
-                height: `${0.5 * scale}rem`,
-              }}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
+        {isVertical ? (
+          <div
+            className="absolute top-1/2 z-10 flex -translate-y-1/2 flex-col"
+            style={{
+              right: `${1 * scale}rem`,
+              gap: `${0.5 * scale}rem`,
+            }}
+          >
+            {children.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`rounded-full transition-all ${
+                  index === currentSlide
+                    ? 'bg-white'
+                    : 'bg-white/30 hover:bg-white/50'
+                }`}
+                style={{
+                  width: `${0.5 * scale}rem`,
+                  height: index === currentSlide ? `${1 * scale}rem` : `${0.5 * scale}rem`,
+                }}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        ) : (
+          <div
+            className="absolute left-1/2 z-10 flex -translate-x-1/2"
+            style={{
+              bottom: `${1 * scale}rem`,
+              gap: `${0.5 * scale}rem`,
+            }}
+          >
+            {children.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`rounded-full transition-all ${
+                  index === currentSlide
+                    ? 'bg-white'
+                    : 'bg-white/30 hover:bg-white/50'
+                }`}
+                style={{
+                  width: index === currentSlide ? `${1 * scale}rem` : `${0.5 * scale}rem`,
+                  height: `${0.5 * scale}rem`,
+                }}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </SlideContext.Provider>
   )

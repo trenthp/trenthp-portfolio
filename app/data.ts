@@ -64,10 +64,18 @@ export const PROJECTS: Project[] = [
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
+    company: 'Mad Catter Studio',
+    title: 'Founder',
+    start: '2025',
+    end: 'Present',
+    link: 'https://madcatter.studio/',
+    id: 'work0',
+  },
+  {
     company: 'OPTAVIA',
     title: 'Director of Product Design',
     start: '2020',
-    end: 'Present',
+    end: '2025',
     link: '#',
     id: 'work1',
   },
@@ -114,6 +122,10 @@ export const BLOG_POSTS: BlogPost[] = [
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
+    label: 'Mad Catter Studio',
+    link: 'https://madcatter.studio/',
+  },
+  {
     label: 'LinkedIn',
     link: 'https://linkedin.com/in/trenthp',
   },
@@ -124,10 +136,6 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'GitHub',
     link: 'https://github.com/trenthp',
-  },
-  {
-    label: 'Resume',
-    link: 'https://drive.google.com/file/d/1hvOF73viXociM_Z52LZsPC6vBYv1t8ga/view?usp=sharing',
   },
 ]
 

@@ -11,7 +11,7 @@ const QUOTES = [
   '"More is lost with indecision than wrong decisions"',
 ]
 
-const COPYRIGHT = '© 2025 Trent Holms Petersen'
+const COPYRIGHT = '© 2026 Trent Holms Petersen'
 
 // Create alternating pattern: copyright, quote, copyright, quote, etc.
 const FOOTER_ITEMS = QUOTES.flatMap((quote) => [COPYRIGHT, quote])

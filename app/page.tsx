@@ -129,13 +129,14 @@ export default function Personal() {
       >
         <div className="flex-1 space-y-4">
           <p className="md:text-lg">
-            I&apos;m a product leader with deep roots in design and a growing practice in code. I figure out what the real problem is, then do whatever it takes to solve it: strategy, team building, design, development, or all of the above.
+            I&apos;m a product leader with deep roots in design and a growing practice in code. I figure out what the real problem is, then do whatever it takes to solve it: strategy, design, development, or all of the above. I run{' '}
+            <a href="https://madcatter.studio/" target="_blank" rel="noopener noreferrer" className="underline">Mad Catter Studio</a>, where I help organizations build the right things faster.
           </p>
           <p className="md:text-lg">
             12+ years shipping B2C and B2B products. Most recently leading product design at Optavia, where I took a 2.3-star app to 4.7+, built a design organization from zero, and introduced AI-powered workflows that cut prototype-to-test cycles in half.
           </p>
           <p className="md:text-lg">
-            I&apos;m looking for my next role at a company where I can own product direction and stay hands-on. Best fit: smaller teams that need someone who can think strategically and ship personally.
+            Through Mad Catter Studio, I partner with teams that need someone who can think strategically and ship personally with strategy, design, and code under one roof.
           </p>
         </div>
         <br />
@@ -195,7 +196,7 @@ export default function Personal() {
         <h3 className="mb-5 text-lg font-medium md:text-xl">About Me</h3>
         <div className="space-y-4">
           <p>
-            I work the way I do because I&apos;ve never been comfortable staying in one lane. I&apos;ve always cared about strategy, design, and how things get built. For most of my career, the tools limited what one person could actually execute. That&apos;s changed. AI removed the ceiling, and the way I&apos;ve always thought about product work is now the way I can actually operate.
+            I work the way I do because I&apos;ve never been comfortable staying in one lane. I&apos;ve always cared about strategy, design, and how things get built. For most of my career, the tools limited what one person could actually execute. That&apos;s changed. AI removed the ceiling, and the way I&apos;ve always thought about product work is now the way I can actually operate. That&apos;s the foundation Mad Catter Studio is built on.
           </p>
           <p>
             The common thread across my work is this: I look for the real problem underneath the surface request, I figure out the fastest path to solving it, and I do the work myself when that&apos;s what it takes. Sometimes that means building a team from scratch and shifting a company&apos;s mindset. Sometimes it means writing prototype code that ships to production. Usually it means several things at once.
@@ -218,10 +219,15 @@ export default function Personal() {
       >
         <h3 className="mb-5 text-lg font-medium md:text-xl">Connect</h3>
         <p className="mb-5">
-          Feel free to contact me at{' '}
+          For work inquiries, visit{' '}
+          <a className="underline" href="https://madcatter.studio/" target="_blank" rel="noopener noreferrer">
+            madcatter.studio
+          </a>
+          . For everything else, reach out at{' '}
           <a className="underline" href={`mailto:${EMAIL}`}>
             {EMAIL}
           </a>
+          .
         </p>
         <div className="flex flex-wrap items-center justify-start gap-2 sm:space-x-3">
           {SOCIAL_LINKS.map((link) => (
